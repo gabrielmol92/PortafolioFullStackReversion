@@ -6,7 +6,9 @@ package com.porfolio.BackEndPorfolio.serviceImp;
 
 import com.porfolio.BackEndPorfolio.dto.HardSkillDto;
 import com.porfolio.BackEndPorfolio.entity.HardSkill;
+import com.porfolio.BackEndPorfolio.entity.Persona;
 import com.porfolio.BackEndPorfolio.repository.HardSkillRepository;
+import com.porfolio.BackEndPorfolio.repository.PersonaRepository;
 import com.porfolio.BackEndPorfolio.service.IHardSkillService;
 import com.porfolio.BackEndPorfolio.util.Mapeo;
 import java.util.List;
@@ -23,19 +25,46 @@ import org.springframework.stereotype.Service;
 public class HardSkillServiceImp implements IHardSkillService {
 
     @Autowired
+    private PersonaRepository personaRepository;
+    
+    @Autowired
     private HardSkillRepository hardSkillRepository;
     
     @Autowired
     private Mapeo mapper;
     
-    @Override
-    public HardSkillDto create(HardSkillDto hardSkillDto) {
-        HardSkill hardSkillEntity = new HardSkill();
-        hardSkillEntity = (HardSkill)mapper.convertToEntity(hardSkillDto, hardSkillEntity);
-        hardSkillEntity = hardSkillRepository.save(hardSkillEntity);
-        return (HardSkillDto)mapper.convertToDto(hardSkillEntity, hardSkillDto);
-    }
+ @Override
+public HardSkillDto create(HardSkillDto hardSkillDto) {
+    // 1. Crear entidad
+    HardSkill hardSkillEntity = new HardSkill();
 
+    // 2. Mapear campos simples manualmente
+    hardSkillEntity.setNombre(hardSkillDto.getNombre());
+    hardSkillEntity.setNivel(hardSkillDto.getNivel());
+    hardSkillEntity.setImg(hardSkillDto.getImg());
+
+    // 3. Asignar persona fija (id = 1)
+    Persona persona = personaRepository.findById(1L)
+        .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
+    hardSkillEntity.setPersona(persona);
+
+    // 4. Guardar en base de datos
+    System.out.println("PERSONA ID: " + hardSkillEntity.getPersona().getId());
+    System.out.println("PERSONA QUE TIENE LA SKILL: " + hardSkillEntity.getPersona());
+
+    HardSkill savedEntity = hardSkillRepository.save(hardSkillEntity);
+
+    // 5. Convertir a DTO de salida
+    HardSkillDto dto = new HardSkillDto();
+    dto.setNombre(savedEntity.getNombre());
+    dto.setNivel(savedEntity.getNivel());
+    dto.setImg(savedEntity.getImg());
+
+    // si tenés id en el DTO
+    dto.setH_id(savedEntity.getH_id());
+
+    return dto;
+}
     @Override
     public void deleteSkill(Long id) {
         hardSkillRepository.deleteById(id);
