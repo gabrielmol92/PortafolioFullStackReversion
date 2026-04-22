@@ -1,0 +1,55 @@
+<section id="educacion" class="finisher-header">
+  <h1><strong>Educacion</strong></h1>
+  <div class="container-fluid row pt-4 g-0">
+              
+       <div id="form-aca"  class="container-fluid d-flex col-md-6">
+             <div class="container-fluid row g-0 pt-3" >
+               <h2><strong>Formacion Academica</strong></h2>
+                    <ng-container *ngFor="let e of ed">
+                            <div class="container-fluid row g-0 p-1 cont-card" *ngIf="e.tipo === 'formacion'">
+
+                                <div class="contenedor-img col-sm-2">
+                                <img class="img-ed" [src]="e.img">
+                                <a [href]="e.link" class="link" target="_blank">
+                                    <div class="text">Link</div>
+                                </a>
+                                </div>      
+
+                                <div class="container-fluid col-sm-10 ed">
+                                <p>{{ e.institucion }}</p>
+                                <p>{{ e.titulo }} ({{ e.periodo_inicio }} - {{ e.periodo_final }})</p>
+                                </div>
+
+                            </div>
+                        </ng-container>                
+             </div>
+       </div>
+    
+       <div id="cursos" class="d-flex col-md-6">
+           
+              <div class="container-fluid row g-0 pt-3" >
+                   <h2><strong>Cursos</strong></h2> 
+                      <ng-container *ngFor="let e of ed">
+                            <div class="container-fluid row g-0 p-1 cont-card" *ngIf="e.tipo === 'curso'">
+
+                                <div class="contenedor-img col-sm-2">
+                                <img class="img-ed" [src]="e.img">
+                                <a [href]="e.link" class="link" target="_blank">
+                                    <div class="text">Link</div>
+                                </a>
+                                </div>      
+
+                                <div class="container-fluid col-sm-10 ed">
+                                <p>{{ e.institucion }}</p>
+                                <p>{{ e.titulo }} ({{ e.periodo_inicio }} - {{ e.periodo_final }})</p>
+                                </div>
+
+                            </div>
+                        </ng-container>
+              </div>
+
+        </div>
+
+ </div>  
+  
+</section>

@@ -1,0 +1,142 @@
+<section id ="habilidades" class="container-fluid row g-0 pt-5 pb-5">
+    <h1>Habilidades</h1>
+    <div class="container-fluid row g-0">
+     <div class="container-fluid col-sm-6 ">
+      <h2>Soft Skills</h2>
+      
+     <nav class="accordion arrows row g-0">
+
+          <input type="radio" name="accordion" id="acc-close" checked />
+          <header class="contenedor-accordion">
+          <label class="box-title" for="acc-close">
+               Habilidades
+          </label>
+          </header>
+          <ng-container *ngFor="let s of skill; let i = index">
+               <input
+                    type="radio"
+                    name="accordion"
+                    [id]="'skill-' + i"
+               />
+               <section class="contenedor-accordion">
+                    <label class="box-title" [for]="'skill-' + i">
+                    {{ s.nombre }}
+                    </label>
+                    <label class="box-close" for="acc-close"></label>
+                    <div class="box-content">
+                    {{ s.descripcion }}
+                    </div>
+               </section>
+          </ng-container>
+
+      </nav>
+
+
+
+
+
+     </div>
+          <div class="container-fluid col-sm-6">
+          <h2>Hard Skills</h2>
+
+          <div class="container-fluid g-0 hard-skills">
+
+
+         <div class="skill row pb-3 g-0">
+             <div class="col-3 cont-tec">
+                  <img src="../../../assets/css-3.png">
+             </div>  
+             <div class="col-9">
+                 <h3>Css</h3>
+                 <div class="container-barra">
+                         <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:80%">
+                         <span>85%</span>
+                         </div>
+                 </div>
+             </div>
+       
+         </div>
+
+
+
+     <div class="skill row pb-3 g-0">
+             <div class="col-3 cont-tec">
+                  <img src="../../../assets/c++.png">
+             </div>  
+             <div class="col-9">
+             <h3>C++</h3>
+              <div class="container-barra">
+                   <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:60%">
+                     <span>60%</span>
+                   </div>
+              </div>
+           </div>
+     </div>
+
+
+     <div class="skill row pb-3 g-0">
+         <div class="col-3 cont-tec">
+              <img src="../../../assets/html-5.png">
+         </div>  
+         <div class="col-9">
+             <h3>Html</h3>
+              <div class="container-barra">
+                   <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:85%">
+                     <span>85%</span>
+                   </div>
+              </div>
+           </div>
+        </div>
+
+
+        <div class="skill row pb-3 g-0">
+         <div class="col-3 cont-tec">
+              <img src="../../../assets/js.png">
+         </div>  
+         <div class="col-9">
+             <h3>JavaScrip</h3>
+              <div class="container-barra">
+                   <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:60%">
+                     <span>60%</span>
+                   </div>
+              </div>
+           </div>
+        </div>
+
+
+        <div class="skill row pb-3 g-0">
+         <div class="col-3 cont-tec">
+              <img src="../../../assets/bootstrap.png">
+         </div>  
+         <div class="col-9">
+             <h3>Bootstrap</h3>
+              <div class="container-barra">
+                   <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:75%">
+                     <span>75%</span>
+                   </div>
+              </div>
+           </div>
+     </div>
+
+
+     <div class="skill row pb-3 g-0">
+         <div class="col-3 cont-tec">
+              <img src="../../../assets/java.png">
+         </div>  
+         <div class="col-9">
+             <h3>Java</h3>
+              <div class="container-barra">
+                   <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="--w:70%">
+                     <span>70%</span>
+                   </div>
+              </div>
+           </div>
+        </div>
+
+
+     </div>
+
+     </div>
+
+    </div>
+</section>

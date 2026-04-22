@@ -1,0 +1,238 @@
+.header{
+    display: block;
+    
+ 
+   }
+ 
+   .container-menu{
+     width: 100%;
+     height: 60px;
+     display:flex;
+     background-color: rgb(19, 117, 112);
+     position:fixed;
+     z-index: 10;
+     /* rgb(15, 82, 79); */
+    
+   }
+ 
+   .logo-yoprogramo{
+     display: flex;
+     color:rgb(255, 255, 255);
+     flex:40%;
+   }
+  .yoprogramo{
+     font-size:1.5rem;
+     color:white;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     padding-left: 0.5rem;
+     font-style: italic;
+     letter-spacing: 0.1rem;
+     padding: 1rem 0;
+ }
+ 
+   .nav-bar{
+     display: flex;
+     align-items: center;
+     justify-content: flex-end;
+     flex: 50%;
+     padding-right: 2rem;
+     z-index: 10;
+     position: relative;
+     flex-direction: row;
+     
+   }
+ 
+ 
+     
+   .nav-bar ul{
+      align-items: center;
+      flex-direction: row;
+      display: flex;
+      list-style: none;
+      height:100%;
+      float: right;
+      margin-bottom: 0;
+  
+   }  
+ 
+   .nav-bar ul li{
+     height:100%;
+     padding-left: 0.5rem;
+     padding-right: 0.5rem;
+     display: flex;
+     align-items: center;
+   }
+ 
+   .nav-bar ul li a{
+     text-decoration: none;
+     color:#ffffff;
+     font-weight: bold;
+     
+   }
+ 
+   .nav-bar ul li:hover {
+     background: rgba(0,0,0,.8);
+     transition:0.4s;
+     
+ 
+   }
+ 
+   .nav-bar ul li:hover a {
+    color: rgb(19, 117, 112);
+     transition:0.4s;
+     
+ 
+   }
+ 
+   #nav-toggle {
+     position: absolute;
+     top: -100px;
+ }
+ 
+    .nav-bar .btn-menu{
+   
+      display: none;
+      position: absolute;
+      right: 5%;
+      top:50%;
+      transform: translateY(-50%);
+   }
+ 
+     .nav-bar .btn-menu .line{
+         width:30px;
+         height: 5px;
+         background-color: #fff;
+         margin: 5px;
+         border-radius: 3px;
+         transition: all .3s ease-in-out;
+     } 
+ 
+   .banner{
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     position: relative;
+  
+     }
+ 
+     .img-banner{
+         object-fit: cover;
+         height: 100%;
+         width: 100%;
+        }
+ 
+   .img-logo{
+     object-fit: cover;
+   }
+ 
+   .container-texto{
+     color: #cec8c8;
+     position: absolute;
+     top: 5%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+    
+   }
+ 
+  
+ 
+   .p{
+     font-family: 'Press Start 2P', cursive;
+     font-size: 1.5rem;
+   }
+ 
+ 
+ .next{
+    position: absolute;
+    bottom:30px;
+    left:0;
+    right:0;
+    width:35px;
+    margin:auto;
+    z-index: 1;
+    text-align: center;
+ }
+ 
+ 
+ .next a {
+   width:35px;
+   height:35px;
+   position:relative;
+   display: inline-block;
+   background-color:#fff;
+   border-radius: 50%;
+   animation: abajo 1s linear infinite;
+   -webkit-animation: abajo 1s linear infinite;
+ }
+ 
+ .next a span {
+   border-top: 1px solid #090a0c;
+     border-right: 1px solid #090a0c;
+     width: 10px;
+     height: 10px;
+     position: absolute;
+     top: -6px;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     margin: auto;
+     -moz-transform: rotate(135deg);
+     -o-transform: rotate(135deg);
+     -ms-transform: rotate(135deg);
+     -webkit-transform: rotate(135deg);
+     transform: rotate(135deg);
+ }
+ 
+
+
+ @media screen and (max-width:768px){
+  .nav-bar ul{
+  float: none;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  top: 100px;
+  bottom: 100%;
+  width: auto;
+  height: auto;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(0,0,0,.8);
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all .5s ease-in-out;
+}
+  .nav-bar ul li a {
+  font-size: 20px;
+}
+.nav-bar :checked ~ ul {
+  bottom: 0;
+}
+.nav-bar .btn-menu {
+  display: block;
+}
+.nav-bar :checked ~ .btn-menu .line:nth-child(1) {
+  transform: translateY(10px) rotate(225deg);
+}
+.nav-bar :checked ~ .btn-menu .line:nth-child(3) {
+  transform: translateY(-10px) rotate(-225deg);
+}
+.nav-bar :checked ~ .btn-menu .line:nth-child(2) {
+  opacity: 0;
+}
+
+
+  .logo-yoprogramo{
+      flex:90%;
+  }
+
+    }
+
+
+    @media screen and (max-width: 500px) {
+      .yoprogramo {
+       display:none;
+     }
+ 
+ }

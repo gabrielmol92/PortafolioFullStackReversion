@@ -1,0 +1,138 @@
+#educacion{
+    
+    font-family: 'PT Serif', serif;
+    text-align: center;
+    padding-top: 4rem;
+    color: #fff;
+    width:100%;
+    padding-left:1rem;
+    padding-right: 1rem;
+   
+  }
+
+
+  .finisher-header {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.finisher-header canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.finisher-header > * {
+  position: relative;
+  z-index: 2;
+}
+  
+  
+  .ed{
+    text-align: center;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
+  }
+  
+  .ed > p {
+    font-size:1.2rem;
+    padding-right: 3rem;
+  }
+  
+  
+  .cont-card{
+    height: 140px;
+    margin-bottom: 0.5rem;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  
+  
+  
+  
+  }
+  
+  .cont-card:hover {
+    border: 2px solid #514f4fb7;
+    border-radius: 5%;
+    box-shadow: 5px 10px 10px rgba(164, 160, 160, 0.121);
+  }
+  
+  
+  
+  
+  .contenedor-img{
+    display:flex;
+    position: relative;
+  }
+  
+  
+  .contenedor-img .img-ed{
+   
+    max-height: 130px;
+    margin:auto;
+    border-radius: 10%;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    opacity: 1;
+   
+  } 
+  
+  .link {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
+  
+  
+  .text {
+    background-color: #111111;
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  
+  }
+  
+  .contenedor-img:hover .img-ed {
+    opacity: 0.3;
+  }
+  
+  .contenedor-img:hover .link {
+    opacity: 0.9;
+  }
+  #cont-idioma{
+    height: 80px;
+    display:flex;
+    font-size: 1.2rem;
+  }
+  
+  .ingles{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .ingles p {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 3rem;
+  }
+
+
+  @media screen and (max-width:768px){
+    #cont-idioma img{
+      max-height: 320px;
+    
+    
+    }
+  }

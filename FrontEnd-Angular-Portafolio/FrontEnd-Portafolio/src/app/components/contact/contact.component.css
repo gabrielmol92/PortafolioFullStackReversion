@@ -1,0 +1,104 @@
+#contacto {
+    background-image:url(../../../assets/fondo-contaco.jpg) ;
+    animation: mov 12s infinite ease-out alternate;  
+    height: 500px;
+    background-size: 90%;
+    width:100%;
+    
+   
+  }
+   
+  #container-contacto{
+    height: 100%;
+    align-items: center;
+    display: flex;
+  }
+  
+  
+  .redes {
+  
+    padding-right: 1rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .redes ul {
+    margin: 0;
+    border-radius: 10%;
+    background-color: hsla(120, 2%, 18%, 0.5);
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+  
+  }
+  
+  .redes ul li {
+    display: inline-block;
+    margin: 0 7px;
+    width:50px;
+    height:50px;
+    text-align: center;
+   }
+   
+   .redes ul li a {
+    display: block;
+    padding: 0 10px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    line-height:50px;
+    font-size:18px;
+    box-shadow: 2px 7px 5px 2px rgba(0, 0, 0, 0.235);
+    transition: .2s;
+    border-radius: 25%;
+   }
+  
+  
+   .redes ul:hover a{
+    filter: blur(2px);
+   }
+   
+   .redes ul li a:hover {
+    transform: translateY(-3px) scale (1.05);
+    box-shadow: 0 5px 5px 0px rgba(0,0,0,0.4);
+    filter:none;
+   }
+   
+   .redes ul li .facebook:hover{
+    background:#3b5999;
+   }
+   
+   .redes ul li .twitter:hover{
+    background: #55acee;
+   }
+   
+   .redes ul li .linkedin:hover{
+    background: #0077B5;
+   }
+  
+  
+  #h2-escribime{
+    color: #000000;
+    text-align: center;
+   
+    text-shadow: 8px 8px 10px white, 1px 1px 3px rgb(19, 117, 112),0px 0px 3px rgb(119, 119, 121);
+    font-weight: bold;
+    font-size:2.2rem;
+    font-family: 'Press Start 2P', cursive;
+    
+  }
+
+  @keyframes mov {
+    0% {
+      background-position: bottom left;
+  }
+  30% {
+      background-position: top right;
+  }
+  60% {
+      background-position: top left;
+  }
+  
+  100% {
+      background-position: bottom right;
+  }
+  }
