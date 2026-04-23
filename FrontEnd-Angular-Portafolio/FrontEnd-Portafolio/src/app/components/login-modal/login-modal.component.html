@@ -1,0 +1,15 @@
+<div class="modal-backdrop">
+  <div class="modal-box">
+
+    <h2>Login</h2>
+
+    <input [(ngModel)]="username" placeholder="Usuario">
+    <input [(ngModel)]="password" type="password" placeholder="Contraseña">
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" (click)="login()">Entrar</button>
+      <button class="btn btn-secondary" (click)="cerrar()">Cancelar</button>
+    </div>
+
+  </div>
+</div>
