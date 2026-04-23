@@ -11,6 +11,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     EducacionComponent,
     SkillsComponent,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgxTypedJsModule
   ],
-  providers: [],
+  providers: [
+   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

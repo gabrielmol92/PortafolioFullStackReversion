@@ -7,7 +7,7 @@ import * as AOS from 'aos';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  mostrarLogin = false;
   ngOnInit(): void {
      AOS.init({
     duration: 1000,
