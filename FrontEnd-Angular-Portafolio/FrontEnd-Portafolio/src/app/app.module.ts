@@ -14,6 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { ButtonModule } from 'primeng/button';
+import { AcercaDeMiEditComponent } from './components/acerca-de-mi-edit/acerca-de-mi-edit.component';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,14 +30,21 @@ import { LoginModalComponent } from './components/login-modal/login-modal.compon
     SkillsComponent,
     ContactComponent,
     FooterComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    AcercaDeMiEditComponent
+        
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxTypedJsModule
+    NgxTypedJsModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

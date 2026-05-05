@@ -1,11 +1,15 @@
 #habilidades{
     background-color: rgb(18, 193, 185);
     font-family: 'PT Serif', serif;
+    position: relative;
+    padding-bottom: 150px;
+    
   }
   
   #habilidades > h1 {
     text-align: center;
     padding-bottom: 3rem;
+    
   }
   
   #habilidades h2 {
@@ -58,8 +62,7 @@
 
  }
   
-   
-
+  
    .accordion {
     margin: auto;
     width: 90%;
@@ -70,7 +73,7 @@
   .contenedor-accordion {
     position: relative;
     background: white;
-      height: 64px;
+      height: 70px;
       transition: all .15s ease-in-out;
   }
   .contenedor-accordion::before {
@@ -151,7 +154,37 @@
   input:checked + section.box .box-title:before {
     transform: rotate(90deg);
   }
+
+
+  #acciones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;   
+  gap: 8px;                
+}
+.p-button.p-button-icon-only {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
   
+}
+
+.p-button.p-button-icon-only .pi {
+  font-size: 12px !important;
+}
+  
+
+.centered2{
+   position: absolute;
+  bottom: 50px;  
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;  
+  display: flex;
+  justify-content: center;
+  padding-bottom: 90px;
+}
   
 
   @keyframes aumentar{

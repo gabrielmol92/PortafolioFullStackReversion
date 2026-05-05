@@ -3,6 +3,7 @@ import { SoftSkillsService } from 'src/app/services/soft-skills.service';
 import { softSkills } from 'src/app/models/softSkills.model';
 import { HardSkillsService } from 'src/app/services/hard-skills.service';
 import { hardSkills } from 'src/app/models/hard-skills';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-skills',
@@ -13,7 +14,9 @@ export class SkillsComponent implements OnInit {
 
   skill: softSkills[]=[]
   hardSkill : hardSkills []=[]
-  constructor(private skillService: SoftSkillsService,private hardSkillService : HardSkillsService) { }
+  activo = false;
+  
+  constructor(private skillService: SoftSkillsService,private hardSkillService : HardSkillsService, public authService : AuthService) { }
 
   ngOnInit(): void {
     this.cargarSkills()
@@ -30,6 +33,9 @@ export class SkillsComponent implements OnInit {
         this.hardSkill = data;
     })
   }  
-
+  togglePlus(event: Event) {
+    event.preventDefault();
+    this.activo = !this.activo;
+  }
 
   }

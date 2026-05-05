@@ -10,7 +10,7 @@
      display:flex;
      background-color: rgb(19, 117, 112);
      position:fixed;
-     z-index: 10;
+     z-index: 1000;
      /* rgb(15, 82, 79); */
     
    }
@@ -36,7 +36,7 @@
      justify-content: flex-end;
      flex: 50%;
      padding-right: 2rem;
-     z-index: 10;
+     z-index: 1020;
      position: relative;
      flex-direction: row;
      

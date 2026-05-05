@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { persona } from 'src/app/models/persona.model';
 import { PersonaService } from 'src/app/services/persona.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-acerca-de-mi',
@@ -10,8 +11,9 @@ import { PersonaService } from 'src/app/services/persona.service';
 export class AcercaDeMiComponent implements OnInit {
   
   persona: persona = new persona("","","","","");
+  modalVisible: boolean = false;
   
-  constructor( public personaService: PersonaService) { }
+  constructor( public personaService: PersonaService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargarPersona();
@@ -20,6 +22,34 @@ export class AcercaDeMiComponent implements OnInit {
   cargarPersona():void{
     this.personaService.getPersona().subscribe(data => {this.persona = data})
   }
+
+  abrirModal() {
+  this.modalVisible = true;
+}
+
+cerrarModal() {
+  this.modalVisible = false;
+}
+
+guardarCambios(data: any) {
+  if (!this.persona.id) {
+      console.log(this.persona)
+    console.error("Falta ID");
+    return;
+  }
+
+  this.personaService.updatePersona(this.persona.id, data).subscribe({
+    next: () => {
+     
+      this.persona = { ...this.persona, ...data }; // mezcla datos
+     
+      this.modalVisible = false;
+    },
+    error: err => console.error(err)
+  });
+}
+
+  
 
   /* editarPersona(): void{
     this.personaService.updatePersona(id: , this.persona).subscribe(data => {this.persona = data})

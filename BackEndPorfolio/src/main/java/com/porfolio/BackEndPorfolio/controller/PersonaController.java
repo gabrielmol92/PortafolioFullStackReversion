@@ -9,6 +9,7 @@ import com.porfolio.BackEndPorfolio.entity.Persona;
 import com.porfolio.BackEndPorfolio.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,17 +50,16 @@ public class PersonaController {
    
    
    @PutMapping("/persona/editar/{id}")
-  public String editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
+  public ResponseEntity<?> editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
           { 
        personaService.updatePersona(personaDto, id);
-       return "Se ha modificado la persona";
+       return ResponseEntity.ok().body("{\"mensaje\":\"ok\"}");
    }
   
   
   @GetMapping("/persona/obtener")
   public PersonaDto getPersona() {
-    return   personaService.getPersona((long)1);
-      
+    return   personaService.getPersona((long)1);     
   }
 
    
