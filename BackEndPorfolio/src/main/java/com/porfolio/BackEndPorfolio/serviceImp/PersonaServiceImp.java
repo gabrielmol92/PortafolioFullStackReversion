@@ -9,9 +9,6 @@ import com.porfolio.BackEndPorfolio.entity.Persona;
 import com.porfolio.BackEndPorfolio.repository.PersonaRepository;
 import com.porfolio.BackEndPorfolio.service.IPersonaService;
 import com.porfolio.BackEndPorfolio.util.Mapeo;
-import java.util.List;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

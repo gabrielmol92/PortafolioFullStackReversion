@@ -1,0 +1,23 @@
+<p-dialog 
+  header="Editar perfil" 
+  [(visible)]="visible" 
+  [modal]="true"
+    appendTo="body"
+  [style]="{ width: '400px' }">
+
+  <form [formGroup]="form">
+
+    <input pInputText formControlName="nombre" placeholder="Nombre" class="w-100 mb-2">
+    <input pInputText formControlName="apellido" placeholder="Apellido" class="w-100 mb-2">
+    <input pInputText formControlName="email" placeholder="Email" class="w-100 mb-2">
+    <input pInputText formControlName="titulo" placeholder="Título" class="w-100 mb-2">
+    <input pInputText formControlName="img" placeholder="URL imagen" class="w-100 mb-2">
+
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancelar" (click)="onClose()"></button>
+    <button pButton label="Guardar" (click)="onSave()" class="p-button-success"></button>
+  </ng-template>
+
+</p-dialog>

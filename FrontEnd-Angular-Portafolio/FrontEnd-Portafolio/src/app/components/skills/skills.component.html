@@ -1,7 +1,7 @@
-<section id ="habilidades" class="container-fluid row g-0 pt-5 pb-5">
+<section id ="habilidades" class="g-0 pt-5">
     <h1>Habilidades</h1>
-    <div class="container-fluid row g-0">
-     <div class="container-fluid col-sm-6 ">
+    <div class="row g-0">
+     <div class="col-sm-6 ">
       <h2>Soft Skills</h2>
       
      <nav class="accordion arrows row g-0">
@@ -18,26 +18,33 @@
                     name="accordion"
                     [id]="'skill-' + i"
                />
+
                <section class="contenedor-accordion">
-                    <label class="box-title" [for]="'skill-' + i">
-                    {{ s.nombre }}
-                    </label>
+                   <div class="row"> 
+                      <div class="col-sm-10">
+                       <label class="box-title" [for]="'skill-' + i">
+                         {{ s.nombre }}
+                       </label> 
+                     </div> 
+                      <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-2 mt-1">       
+                         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
+                         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                      </div>
+                    </div> 
+
+
                     <label class="box-close" for="acc-close"></label>
                     <div class="box-content">
-                    {{ s.descripcion }}
-                    </div>
+                       {{ s.descripcion }}
+                    </div>      
                </section>
           </ng-container>
 
       </nav>
 
-
-
-
-
      </div>
           <div class="container-fluid col-sm-6">
-          <h2>Hard Skills</h2>
+              <h2>Hard Skills</h2>
 
           <div class="container-fluid g-0 hard-skills">
 
@@ -46,14 +53,19 @@
              <div class="col-3 cont-tec">
                   <img [src]="h.img">
              </div>  
-             <div class="col-9">
+             <div class="col-8">
                  <h3>{{h.nombre}}</h3>
                  <div class="container-barra">
-                         <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"  [style.--w]="h.nivel + '%'">>
+                         <div class="barra" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"  [style.--w]="h.nivel + '%'">
                          <span>{{h.nivel}}%</span>
                          </div>
                  </div>
              </div>
+                 <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-1">
+                                   
+                        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
+                        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                 </div>
        
          </div>
 
@@ -62,4 +74,15 @@
      </div>
 
     </div>
+    
+    <div *ngIf="authService.isLogged()" class="centered2 container-fluid">
+          <div class="plus" id="plus"  [class.plus--active]="activo" (click)="togglePlus($event)">
+               <div class="plus__line plus__line--v">
+               <a href="#" class="plus__link" (click)="$event.stopPropagation()">Soft</a>
+               <a href="#" class="plus__link" (click)="$event.stopPropagation()">Hard</a>
+               </div>
+               <div class="plus__line plus__line--h"></div>
+          </div>
+     </div>
+
 </section>

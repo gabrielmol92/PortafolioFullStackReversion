@@ -2,7 +2,8 @@
     <div id="acerca-de-mi"  class="container-fluid row">
       <div class="col-sm-5 cont-foto">
          <img class="img-perfil" src="{{persona.img}}">
-         <button class="icon-btn edit-btn">
+         <button *ngIf="authService.isLogged()" class="icon-btn edit-btn"   (click)="abrirModal()">
+          
           <div class="edit-icon"></div>
           <div class="btn-txt">Editar</div>
       </button>
@@ -31,9 +32,14 @@
      </div>
 
       </div>
-     
-
-
     </div>
+
+<app-acerca-de-mi-edit
+  [visible]="modalVisible"
+  [data]="persona"
+  (close)="cerrarModal()"
+  (save)="guardarCambios($event)">
+</app-acerca-de-mi-edit>
+    
 
 </section>

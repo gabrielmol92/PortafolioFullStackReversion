@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { educacion } from '../models/educacion.model';
@@ -22,10 +22,14 @@ export class EducacionService {
   }
 
   public save(educacion: educacion): Observable<any>{
+
+
    return this.httpClient.post<any>(this.URL + 'new', educacion)
   }
 
   public update(id: number , educacion: educacion): Observable<any> {
+
+
     return this.httpClient.put<any>(this.URL + `update/${id}`, educacion);
   }
  

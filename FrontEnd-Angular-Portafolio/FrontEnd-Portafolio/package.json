@@ -21,6 +21,8 @@
     "aos": "^2.3.4",
     "gsap": "^3.14.2",
     "ngx-typed-js": "^2.1.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^14.2.3",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.26.24",
     "tslib": "^2.3.0",
