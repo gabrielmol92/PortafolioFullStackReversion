@@ -20,6 +20,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EducacionCrudComponent } from './components/educacion-crud/educacion-crud.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContactComponent,
     FooterComponent,
     LoginModalComponent,
-    AcercaDeMiEditComponent
+    AcercaDeMiEditComponent,
+    EducacionCrudComponent
         
   ],
   imports: [
@@ -44,10 +48,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ButtonModule,
     InputTextModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ConfirmDialogModule
   ],
   providers: [
-   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

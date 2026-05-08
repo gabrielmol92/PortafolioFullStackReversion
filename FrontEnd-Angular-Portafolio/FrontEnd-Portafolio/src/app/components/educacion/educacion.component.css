@@ -1,5 +1,6 @@
 #educacion{
-    
+       position: relative;
+   overflow: hidden;
     font-family: 'PT Serif', serif;
     text-align: center;
     padding-top: 4rem;

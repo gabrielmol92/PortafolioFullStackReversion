@@ -8,6 +8,8 @@ import com.porfolio.BackEndPorfolio.dto.EducacionDto;
 import com.porfolio.BackEndPorfolio.service.IEducacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,24 +31,25 @@ public class EducacionController {
     private IEducacionService educacionService;
     
     @PostMapping("/educacion/new")
-    public String createEd (@RequestBody EducacionDto educacionDto){
-       educacionService.create(educacionDto); 
-     return "Se ha creado la educacion";
+    public ResponseEntity<EducacionDto> createEd (@RequestBody EducacionDto educacionDto){
+      EducacionDto created =  educacionService.create(educacionDto); 
+     return ResponseEntity
+             .status(HttpStatus.CREATED)
+             .body(created);
     }
     
     
     @DeleteMapping("/educacion/delete/{id}")
-    public String deleteEducacion (@PathVariable Long id){
+    public ResponseEntity<Void> deleteEducacion (@PathVariable Long id){
      educacionService.deleteEdu(id);
-    return "Se ha borrado la educacion";   
+    return ResponseEntity.noContent().build();   
      }
     
     
     @PutMapping("/educacion/update/{id}")
-    public String editEducacion (@RequestBody EducacionDto educacionDto, @PathVariable Long id){
-       educacionService.updateEd(educacionDto, id);
-    
-     return "Se ha editado el curso";
+    public ResponseEntity<EducacionDto> editEducacion (@RequestBody EducacionDto educacionDto, @PathVariable Long id){
+       EducacionDto updated = educacionService.updateEd(educacionDto, id);
+       return ResponseEntity.ok().body(updated);
     
     }
 

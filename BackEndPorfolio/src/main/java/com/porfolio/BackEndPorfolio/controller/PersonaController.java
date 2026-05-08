@@ -5,9 +5,7 @@
 package com.porfolio.BackEndPorfolio.controller;
 
 import com.porfolio.BackEndPorfolio.dto.PersonaDto;
-import com.porfolio.BackEndPorfolio.entity.Persona;
 import com.porfolio.BackEndPorfolio.service.IPersonaService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,10 +48,10 @@ public class PersonaController {
    
    
    @PutMapping("/persona/editar/{id}")
-  public ResponseEntity<?> editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
+  public ResponseEntity<PersonaDto> editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
           { 
-       personaService.updatePersona(personaDto, id);
-       return ResponseEntity.ok().body("{\"mensaje\":\"ok\"}");
+       PersonaDto updated =  personaService.updatePersona(personaDto, id);
+       return ResponseEntity.ok().body(updated);
    }
   
   

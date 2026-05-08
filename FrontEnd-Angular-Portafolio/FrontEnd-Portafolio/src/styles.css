@@ -1,9 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
   }
+
 
  /* html{
   scroll-behavior: smooth;
@@ -48,10 +52,11 @@
 
 /* CONTENEDOR CENTRADO */
 .centered {
-   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   padding:40px 0;
+
 }
 
 /* BOTÓN + */
@@ -61,14 +66,11 @@
   background: #ffe581;
   border-radius: 50%;
   display: flex;
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* 🔥 siempre centrado */
-
+  position: relative;
   cursor: pointer;
-  transition: all .3s ease, transform .3s ease;
+  transition: all .3s ease;
+  margin-top:20px;
+  overflow: visible;
 }
 
 .plus__line {
@@ -111,18 +113,20 @@
   border-radius: 30px;
 
 
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 
 .plus--active .plus__line--v {
-  height: 68px;
-  top: calc(-100% - 60px);
-  padding: 0 5px;
-  box-sizing: border-box;
+  height: auto;
+  min-height: 40px;
   width: 220px;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 10px;
   border-radius: 60px;
-  left: calc(50% - 110px);
+  box-sizing: border-box;
 }
 
 

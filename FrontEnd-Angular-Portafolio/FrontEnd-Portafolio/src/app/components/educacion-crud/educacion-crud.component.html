@@ -1,0 +1,27 @@
+<p-dialog 
+  [header]="modo === 'editar' ? 'Editar educación' : 'Agregar educación'"
+  [(visible)]="visible" 
+  [modal]="true"
+  (onHide)="onClose()"
+    appendTo="body"
+  [style]="{ width: '400px' }">
+
+  <form [formGroup]="form">
+
+    <input pInputText formControlName="titulo" placeholder="Titulo" class="w-100 mb-2">
+    <input pInputText formControlName="institucion" placeholder="Institucion" class="w-100 mb-2">
+    <input pInputText formControlName="periodo_inicio" placeholder="Inicio" class="w-100 mb-2">
+    <input pInputText formControlName="periodo_final" placeholder="Fin" class="w-100 mb-2">
+    <input pInputText formControlName="img" placeholder="URL imagen" class="w-100 mb-2">
+    <input pInputText formControlName="tipo" placeholder="Tipo" class="w-100 mb-2"  [readonly]="modo === 'crear'">
+    <input pInputText formControlName="link" placeholder="Link" class="w-100 mb-2" >
+
+
+  </form>
+
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancelar" (click)="onClose()"></button>
+    <button pButton label="Guardar" (click)="onSave()" class="p-button-success"></button>
+  </ng-template>
+
+</p-dialog>
