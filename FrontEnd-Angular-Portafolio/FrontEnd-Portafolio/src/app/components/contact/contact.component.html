@@ -1,44 +1,74 @@
 <section id="contacto">
-    <div id="container-contacto"class="container-fluid row g-0">
-      <div id="container-redes" class="col-sm-6">
-       <div class="redes">
-         <ul>    
-             <li><a href="" class="facebook"><i class="fab fa-facebook-f"></i></a> </li>                   
-             <li><a href="" class="twitter"><i class="fab fa-twitter"></i></a> </li>          
-             <li><a href="" class="linkedin"><i class="fab fa-linkedin-in"></i></a> </li>
-         </ul>
-       </div>
-
-      </div>
-
-
-
-      <div id="mail-me" class="col-sm-6">
-         <h2 id="h2-escribime">Escribime</h2>
-         <div class="container-form m-3">
-           <form action="/action_page.php">
-
-             <div class="form-floating mb-2 mt-2">
-               <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" name="nombre">
-               <label for="nombre">Nombre</label>
-             </div>
-
-             <div class="form-floating mb-2 mt-2">
-               <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
-               <label for="email">Email</label>
-             </div>
-             <div class="mb-2 mt-2">
-               <textarea class="form-control" id="comment" rows="4" name="text" placeholder="Mensaje"></textarea>
-              
-             </div>
-             <button type="submit" class="btn btn-primary">Submit</button>
-           </form>
-         </div>
-
-
-
+  <div id="container-contacto" class="container-fluid row g-0">
+    <div id="container-redes" class="col-sm-6">
+      <div class="redes">
+        <ul>
+          <li>
+            <a target="_blank"
+               href="https://www.facebook.com/gabriel.molina.7545/?locale=es_LA"
+               class="facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank"
+               href="https://x.com/GabrielMolina00"
+               class="twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a target="_blank"
+               href="https://www.linkedin.com/in/gabriel-eduardo-molina-360b55234/"
+               class="linkedin">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-   
-
-  </section>
+    <div id="mail-me" class="col-sm-6">
+      <h2 id="h2-escribime">Escribime</h2>
+      <div class="container-form m-3">
+        <form (ngSubmit)="enviarMensaje()">
+          <div class="form-floating mb-2 mt-2">
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Ingrese su nombre"
+              name="nombre"
+              [(ngModel)]="nombre"
+              required>
+            <label for="nombre">Nombre</label>
+          </div>
+          <div class="form-floating mb-2 mt-2">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+              name="email"
+              [(ngModel)]="email"
+              required>
+            <label for="email">Email</label>
+          </div>
+          <div class="mb-2 mt-2">
+            <textarea
+              class="form-control"
+              id="comment"
+              rows="4"
+              name="mensaje"
+              placeholder="Mensaje"
+              [(ngModel)]="mensaje"
+              required>
+            </textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

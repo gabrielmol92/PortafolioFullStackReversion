@@ -28,7 +28,7 @@ public class HardSkill implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private Long h_id;
+    private Long id;
     
     @Column(name="nombre")
     private String nombre;
@@ -46,19 +46,19 @@ public class HardSkill implements Serializable {
     public HardSkill() {
     }
 
-    public HardSkill(Long h_id, String nombre, int nivel, String img) {
-        this.h_id = h_id;
+    public HardSkill(Long id, String nombre, int nivel, String img) {
+        this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
         this.img = img;
     }
 
-    public Long getH_id() {
-        return h_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setH_id(Long h_id) {
-        this.h_id = h_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {

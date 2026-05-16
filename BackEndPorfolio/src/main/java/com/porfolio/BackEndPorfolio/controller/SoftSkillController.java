@@ -8,6 +8,8 @@ import com.porfolio.BackEndPorfolio.dto.SoftSkillDto;
 import com.porfolio.BackEndPorfolio.service.ISoftSkillService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,22 +31,24 @@ public class SoftSkillController {
     private ISoftSkillService softSkillService;
     
      @PostMapping("/softSkill/new")
-     public String createSoftSkill(@RequestBody SoftSkillDto softSkillDto){
-       softSkillService.create(softSkillDto);
-     return "Se ha creado la skill";
+     public ResponseEntity<SoftSkillDto> createSoftSkill(@RequestBody SoftSkillDto softSkillDto){
+       SoftSkillDto created = softSkillService.create(softSkillDto);
+     return ResponseEntity
+             .status(HttpStatus.CREATED)
+             .body(created);
      }
     
      
      @DeleteMapping("/softSkill/delete/{id}")
-     public String deleteSkill(@PathVariable Long id){
+     public ResponseEntity<Void> deleteSkill(@PathVariable Long id){
        softSkillService.deleteSkill(id);
-     return "Se ha borrado el skill";
+      return ResponseEntity.noContent().build(); 
      }
      
-     @PutMapping("/softSkill/edit/{id}")
-     public String editSkill(@RequestBody SoftSkillDto softSkillDto,@PathVariable Long id){
-       softSkillService.editSkill(softSkillDto, id);
-     return "Se ha editado la skill";    
+     @PutMapping("/softSkill/update/{id}")
+     public ResponseEntity<SoftSkillDto> editSkill(@RequestBody SoftSkillDto softSkillDto,@PathVariable Long id){
+       SoftSkillDto updated = softSkillService.editSkill(softSkillDto, id);
+         return ResponseEntity.ok().body(updated) ;    
      }
 
      

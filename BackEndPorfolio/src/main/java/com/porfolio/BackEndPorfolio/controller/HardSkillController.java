@@ -8,6 +8,8 @@ import com.porfolio.BackEndPorfolio.dto.HardSkillDto;
 import com.porfolio.BackEndPorfolio.service.IHardSkillService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,22 +31,24 @@ public class HardSkillController {
     private IHardSkillService hardSkillService;
     
      @PostMapping("/hardSkill/new")
-     public String createHardSkill(@RequestBody HardSkillDto hardSkillDto){
-       hardSkillService.create(hardSkillDto);
-     return "Se ha creado la hardskill";
+     public ResponseEntity<HardSkillDto> createHardSkill(@RequestBody HardSkillDto hardSkillDto){
+      HardSkillDto created = hardSkillService.create(hardSkillDto);
+     return ResponseEntity
+             .status(HttpStatus.CREATED)
+             .body(created);
      }
     
      
      @DeleteMapping("/hardSkill/delete/{id}")
-     public String deleteSkill(@PathVariable Long id){
+     public ResponseEntity<Void> deleteSkill(@PathVariable Long id){
        hardSkillService.deleteSkill(id);
-     return "Se ha borrado el skill";
+      return ResponseEntity.noContent().build(); 
      }
      
-     @PutMapping("/hardSkill/edit/{id}")
-     public String editSkill(@RequestBody HardSkillDto hardSkillDto,@PathVariable Long id){
-       hardSkillService.editSkill(hardSkillDto, id);
-     return "Se ha editado la skill";    
+     @PutMapping("/hardSkill/update/{id}")
+     public ResponseEntity<HardSkillDto> editSkill(@RequestBody HardSkillDto hardSkillDto,@PathVariable Long id){
+      HardSkillDto updated = hardSkillService.editSkill(hardSkillDto, id);
+     return ResponseEntity.ok().body(updated) ;        
      }
 
      

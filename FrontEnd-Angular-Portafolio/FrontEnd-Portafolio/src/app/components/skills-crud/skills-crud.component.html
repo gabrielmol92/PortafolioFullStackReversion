@@ -1,0 +1,67 @@
+<p-dialog
+  [header]="modo === 'editar' ? 'Editar Skill' : 'Agregar Skill'"
+  [(visible)]="visible"
+  [modal]="true"
+  (onHide)="onClose()"
+  appendTo="body"
+  [style]="{ width: '400px' }">
+
+  <form [formGroup]="form">
+
+    <!-- SIEMPRE -->
+    <input
+      pInputText
+      formControlName="nombre"
+      placeholder="Nombre"
+      class="w-100 mb-2">
+
+    <!-- SOFT -->
+    <div *ngIf="tipo === 'soft'">
+
+      <textarea
+        pInputTextarea
+        formControlName="descripcion"
+        placeholder="Descripción"
+        rows="5"
+        class="w-100 mb-2">
+      </textarea>
+
+    </div>
+
+    <!-- HARD -->
+    <div *ngIf="tipo === 'hard'">
+
+      <input
+        pInputText
+        formControlName="nivel"
+        placeholder="Nivel"
+        class="w-100 mb-2">
+
+      <input
+        pInputText
+        formControlName="img"
+        placeholder="URL imagen"
+        class="w-100 mb-2">
+
+    </div>
+
+  </form>
+
+  <ng-template pTemplate="footer">
+
+    <button
+      pButton
+      label="Cancelar"
+      (click)="onClose()">
+    </button>
+
+    <button
+      pButton
+      label="Guardar"
+      class="p-button-success"
+      (click)="onSave()">
+    </button>
+
+  </ng-template>
+
+</p-dialog>

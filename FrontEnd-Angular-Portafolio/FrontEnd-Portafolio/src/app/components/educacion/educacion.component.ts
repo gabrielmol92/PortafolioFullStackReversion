@@ -2,7 +2,8 @@ import { AfterViewInit,AfterViewChecked,Component, OnInit } from '@angular/core'
 import { EducacionService } from 'src/app/services/educacion.service';
 import {educacion} from 'src/app/models/educacion.model';
 import {AuthService} from 'src/app/services/auth.service'
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService} from 'primeng/api';
+
 
 declare var FinisherHeader: any;
 
@@ -17,12 +18,11 @@ export class EducacionComponent implements OnInit, AfterViewChecked  {
   modalVisible: boolean = false;
   educacionSeleccionada: any = null;
   modo: 'crear' | 'editar' = 'editar';
-
-
   activo = false;
   backgroundIniciado = false;
 
-  constructor(private educacionService: EducacionService, public authService : AuthService,  private confirmationService: ConfirmationService) {}
+  constructor(private educacionService: EducacionService, public authService : AuthService,
+      private confirmationService: ConfirmationService,   private messageService: MessageService) {}
 
   ngOnInit(): void {
   this.cargarEducacion();
@@ -104,6 +104,9 @@ export class EducacionComponent implements OnInit, AfterViewChecked  {
   cargarEducacion(): void {
   this.educacionService.getEducacion().subscribe(data => {
     this.ed = data;
+      this.ed.forEach(element => {
+        console.log(element.id)
+      });
   });
 }
 
@@ -128,63 +131,128 @@ cerrarModal() {
 
 guardarCambios(data: any) {
   if (this.modo === 'editar') {
-    if (!this.educacionSeleccionada?.id) {
-      console.error("Falta ID");
-      return;
-    }
-    this.educacionService.update(this.educacionSeleccionada.id, data).subscribe({
+    this.actualizarEducacion(data);
+  }
+  else if (this.modo === 'crear') {
+    this.crearEducacion(data);
+  }
+}
+
+private actualizarEducacion(data: any): void {
+  if (!this.educacionSeleccionada?.id) {
+    this.mostrarError('Falta ID de la educación');
+    return;
+  }
+  this.educacionService
+    .update(this.educacionSeleccionada.id, data)
+    .subscribe({
       next: () => {
         const index = this.ed.findIndex(
           e => e.id === this.educacionSeleccionada.id
         );
-
         if (index !== -1) {
-          this.ed[index] = { ...this.ed[index], ...data };
+          this.ed[index] = {
+            ...this.ed[index],
+            ...data
+          };
         }
-        this.modalVisible = false;
-        this.educacionSeleccionada = null;
+        this.mostrarExito(
+          'Actualizado',
+          'Actualizado correctamente'
+        );
+        this.cerrarYLimpiarModal();
       },
-      error: err => console.error(err)
+      error: err => {
+        this.mostrarError(
+          'No se pudo actualizar'
+        );
+        console.error(err);
+      }
     });
-  } 
-  else if (this.modo === 'crear') {
-     console.log(data);
-    this.educacionService.save(data).subscribe({
-      next: (nueva) => {
-        this.ed.push(nueva);
-
-        this.modalVisible = false;
-        this.educacionSeleccionada = null;
-      },
-      error: err => console.error(err)
-    });
-
-  }
 }
 
-eliminarEducacion(id: number) {
+private crearEducacion(data: any): void {
+  this.educacionService.save(data).subscribe({
+    next: (nueva) => {
+      this.ed.push(nueva);
+      this.mostrarExito(
+        'Creado',
+        'Creado correctamente'
+      );
+      this.cerrarYLimpiarModal();
+    },
+    error: err => {
+      this.mostrarError(
+        'No se pudo crear'
+      );
+      console.error(err);
+    }
+  });
+}
+
+private cerrarYLimpiarModal(): void {
+  this.modalVisible = false;
+  this.educacionSeleccionada = null;
+}
+
+private mostrarExito(
+  summary: string,
+  detail: string
+): void {
+  this.messageService.add({
+    severity: 'success',
+    summary,
+    detail
+  });
+}
+
+private mostrarError(detail: string): void {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Error',
+    detail
+  });
+}
+
+eliminarEducacion(id: number): void {
   this.confirmationService.confirm({
     header: 'Confirmación',
-    message: '¿Seguro que querés eliminar esta educación?',
+    message: '¿Seguro que querés eliminar?',
     icon: 'pi pi-exclamation-triangle',
     acceptLabel: 'Sí',
     rejectLabel: 'Cancelar',
-    accept: () => {
-      this.educacionService.delete(id).subscribe({
-        next: () => {
-          this.ed = this.ed.filter(e => e.id !== id);
-        },
-        error: err => console.error(err)
-      });
-    },
-    reject: () => {
-      console.log("Canceló");
-    }
+    accept: () => this.confirmarEliminacion(id),
+    reject: () => this.cancelarEliminacion()
   });
-
 }
 
+private confirmarEliminacion(id: number): void {
+  this.educacionService.delete(id).subscribe({
+    next: () => {
+      this.ed = this.ed.filter(
+        e => e.id !== id
+      );
+      this.mostrarExito(
+        'Eliminado',
+        'Eliminada correctamente'
+      );
+    },
+    error: err => {
+      this.mostrarError(
+        'No se pudo eliminar'
+      );
+      console.error(err);
+    }
+  });
+}
 
+private cancelarEliminacion(): void {
+  this.messageService.add({
+    severity: 'info',
+    summary: 'Cancelado',
+    detail: 'La eliminación fue cancelada'
+  });
+}
 
 
 }
