@@ -7,6 +7,8 @@ package com.porfolio.BackEndPorfolio.controller;
 import com.porfolio.BackEndPorfolio.dto.DomicilioDto;
 import com.porfolio.BackEndPorfolio.service.IDomicilioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,17 +27,18 @@ public class DomicilioController {
     
     
     @PostMapping("/domicilio/new")
-    public String createDomicilio (@RequestBody DomicilioDto domicilio){
-            domicilioService.create(domicilio);
-        return "El domicilio fue creada";
-    
+    public ResponseEntity<DomicilioDto> createDomicilio (@RequestBody DomicilioDto domicilio){
+            DomicilioDto created = domicilioService.create(domicilio);
+          return ResponseEntity
+             .status(HttpStatus.CREATED)
+             .body(created);
     }
     
     @PutMapping("/domicilio/editar/{id}")
-  public String editDomicilio(@RequestBody DomicilioDto domicilioDto,@PathVariable Long id)                              
+  public ResponseEntity<DomicilioDto> editDomicilio(@RequestBody DomicilioDto domicilioDto,@PathVariable Long id)                              
           { 
-       domicilioService.updateDomicilio(domicilioDto, id);
-       return "Se ha modificado el domicilio";
+       DomicilioDto updated = domicilioService.updateDomicilio(domicilioDto, id);
+        return ResponseEntity.ok().body(updated);
    }
     
     

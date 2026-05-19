@@ -27,34 +27,22 @@ public class UsuarioServiceImp implements IUsuarioService {
 
     @Override
 public UsuarioDto registrar(UsuarioDto usuarioDto) {
-
     Usuario usuarioEntity = new Usuario();
-
     usuarioEntity.setUsername(usuarioDto.getUsername());
     usuarioEntity.setPassword(passwordEncoder.encode(usuarioDto.getPassword()));
     usuarioEntity.setRol("ROLE_USER");
-
     Usuario savedEntity = repo.save(usuarioEntity);
-
     UsuarioDto dto = new UsuarioDto();
     dto.setUsername(savedEntity.getUsername());  
-   // dto.setId(savedEntity.getId());
-  //  dto.setRol(savedEntity.getRol());
-
     return dto;
 }
 
     @Override
 public UsuarioDto buscarPorUsername(String username) {
-
     Usuario user = repo.findByUsername(username)
             .orElseThrow(() -> new RuntimeException("No existe"));
-
     UsuarioDto dto = new UsuarioDto();
-   // dto.setId(user.getId());
     dto.setUsername(user.getUsername());
-   // dto.setRol(user.getRol());
-
     return dto;
 }
 

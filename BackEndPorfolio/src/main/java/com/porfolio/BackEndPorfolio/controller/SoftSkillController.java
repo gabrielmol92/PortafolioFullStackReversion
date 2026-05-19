@@ -54,10 +54,7 @@ public class SoftSkillController {
      
      @GetMapping("/softSkill/listar")
     public List<SoftSkillDto> listarSoftSkill (){
-     
-    return  softSkillService.obtenerSkills();
-    
-        
+    return  softSkillService.obtenerSkills();        
     }
 
 }

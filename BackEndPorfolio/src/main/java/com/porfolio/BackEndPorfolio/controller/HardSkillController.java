@@ -54,10 +54,7 @@ public class HardSkillController {
      
      @GetMapping("/hardSkill/listar")
     public List<HardSkillDto> listarHardSkill (){
-     
     return  hardSkillService.obtenerSkills();
-    
-        
     }
 
 }

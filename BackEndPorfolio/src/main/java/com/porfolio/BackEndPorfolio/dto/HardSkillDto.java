@@ -4,10 +4,6 @@
  */
 package com.porfolio.BackEndPorfolio.dto;
 
-import com.porfolio.BackEndPorfolio.entity.Persona;
-import java.io.Serializable;
-
-
 /**
  *
  * @author GabrielPc

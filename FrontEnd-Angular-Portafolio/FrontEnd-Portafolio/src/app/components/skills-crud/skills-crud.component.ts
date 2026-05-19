@@ -1,5 +1,6 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-skills-crud',
@@ -16,14 +17,24 @@ export class SkillsCrudComponent implements OnInit {
 
  form: FormGroup;
 
-constructor(private fb: FormBuilder) {
+constructor(private fb: FormBuilder, private messageService: MessageService) {
 
 
 
   this.form = this.fb.group({
-    nombre: [''],
-    descripcion: [''],
-    nivel: [''],
+    nombre: ['',
+        [Validators.required]
+      ],
+    descripcion: ['',
+        [Validators.required]
+      ],
+    nivel: ['',
+       [
+       Validators.required,
+       Validators.min(0),
+       Validators.max(100)
+       ]
+      ],
     img: ['']
   });
 }
@@ -51,6 +62,11 @@ onSave() {
       this.save.emit(this.form.value);
     } else {
       this.form.markAllAsTouched();
+       this.messageService.add({
+      severity: 'warn',
+      summary: 'Formulario inválido',
+      detail: 'Completá todos los campos correctamente'
+    });
     }
   }
 

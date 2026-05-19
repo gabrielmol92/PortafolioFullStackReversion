@@ -5,22 +5,13 @@
    
  }
 
- 
-
-
-
 .cont-foto{
     height:260px;
     width:260px;
     margin: auto;
     display: flex;
-   
-   
-    
-
+  
 }
-
-
 
 .cont-sobre{
  text-align: center;
@@ -28,16 +19,11 @@
  font-size: 1.65rem;
 }
 
-
-
-
 .img-perfil{
  width: 100%;
  height: auto;
  border-radius: 50%;
  border: 2px groove;
-
-
 }
 
 .img-perfil:hover{
@@ -45,7 +31,6 @@
  transition:0.4s;
 
 }
-
 
 .contenedor-cv{
  width: 300px;

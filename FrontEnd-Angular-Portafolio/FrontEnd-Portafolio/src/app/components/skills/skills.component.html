@@ -3,7 +3,7 @@
     <div class="row g-0">
      <div class="col-sm-6 ">
       <h2>Soft Skills</h2>
-      
+ 
      <nav class="accordion arrows row g-0">
 
           <input type="radio" name="accordion" id="acc-close" checked />
@@ -39,16 +39,11 @@
                     </div>      
                </section>
           </ng-container>
-
       </nav>
-
      </div>
           <div class="container-fluid col-sm-6">
               <h2>Hard Skills</h2>
-
           <div class="container-fluid g-0 hard-skills">
-
-
          <div class="skill row pb-3 g-0" *ngFor="let h of hardSkill">
              <div class="col-3 cont-tec">
                   <img [src]="h.img">
@@ -65,16 +60,11 @@
                                    
                         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"  (click)="abrirModalEditar(h, 'hard')"></button>
                         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="eliminarSkill(h.id,'hard')"></button>
-                 </div>
-       
+                 </div>    
          </div>
-
      </div>
-
      </div>
-
-    </div>
-    
+    </div>  
     <div *ngIf="authService.isLogged()" class="centered2 container-fluid">
           <div class="plus" id="plus"  [class.plus--active]="activo" (click)="togglePlus($event)">
                <div class="plus__line plus__line--v">

@@ -49,17 +49,12 @@ public class EducacionController {
     @PutMapping("/educacion/update/{id}")
     public ResponseEntity<EducacionDto> editEducacion (@RequestBody EducacionDto educacionDto, @PathVariable Long id){
        EducacionDto updated = educacionService.updateEd(educacionDto, id);
-       return ResponseEntity.ok().body(updated);
-    
+       return ResponseEntity.ok().body(updated);    
     }
-
 
     @GetMapping("/educacion/listar")
     public List<EducacionDto> listarEducacion (){
-     
     return  educacionService.obtenerEd(); 
-    
-        
     }
     
     

@@ -1,60 +1,32 @@
 #educacion{
-       position: relative;
-   overflow: hidden;
-    font-family: 'PT Serif', serif;
-    text-align: center;
-    padding-top: 4rem;
-    color: #fff;
-    width:100%;
-    padding-left:1rem;
-    padding-right: 1rem;
-   
-  }
-
-
-  .finisher-header {
   position: relative;
   overflow: hidden;
-  width: 100%;
+  font-family: 'PT Serif', serif;
+  text-align: center;
+  color: #fff;
+  width:100%;
+  background-color: #161616;
 }
 
-.finisher-header canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.finisher-header > * {
-  position: relative;
-  z-index: 2;
-}
-  
-  
-  .ed{
+.ed{
     text-align: center;
     padding-top:1.5rem;
     padding-bottom:1.5rem;
-  }
+}
   
-  .ed > p {
+.ed > p {
     font-size:1.2rem;
     padding-right: 3rem;
-  }
+}
   
   
-  .cont-card{
+.cont-card{
     height: 140px;
     margin-bottom: 0.5rem;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-  
-  
-  
-  
-  }
+}
   
   .cont-card:hover {
     border: 2px solid #514f4fb7;

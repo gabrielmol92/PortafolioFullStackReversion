@@ -5,19 +5,21 @@
   (onHide)="onClose()"
   appendTo="body"
   [style]="{ width: '400px' }">
-
   <form [formGroup]="form">
-
-    <!-- SIEMPRE -->
     <input
       pInputText
       formControlName="nombre"
       placeholder="Nombre"
       class="w-100 mb-2">
-
-    <!-- SOFT -->
+       <small
+        class="p-error"
+       *ngIf="
+        form.get('nombre')?.invalid &&
+        form.get('nombre')?.touched
+        ">
+       El nombre de la skill es obligatorio
+     </small>
     <div *ngIf="tipo === 'soft'">
-
       <textarea
         pInputTextarea
         formControlName="descripcion"
@@ -25,43 +27,62 @@
         rows="5"
         class="w-100 mb-2">
       </textarea>
-
+       <small
+        class="p-error"
+       *ngIf="
+        form.get('descripcion')?.invalid &&
+        form.get('descripcion')?.touched
+        ">
+       Alguna descripcion es necesaria
+     </small>
     </div>
-
     <!-- HARD -->
     <div *ngIf="tipo === 'hard'">
-
       <input
-        pInputText
+        type="number"
         formControlName="nivel"
         placeholder="Nivel"
-        class="w-100 mb-2">
-
+        class="w-100 mb-2"
+        min="0"
+        max="100">
+       <small
+        class="p-error"
+       *ngIf="
+        form.get('nivel')?.invalid &&
+        form.get('nivel')?.touched
+        ">
+       Agregar nivel es obligatorio
+     </small>  
+     <small
+      class="text-danger d-block"
+      *ngIf="
+        (
+          form.get('nivel')?.errors?.['min'] ||
+          form.get('nivel')?.errors?.['max']
+        ) &&
+         form.get('nivel')?.touched
+        ">
+        El nivel debe estar entre 0 y 100
+      </small>
       <input
         pInputText
         formControlName="img"
         placeholder="URL imagen"
         class="w-100 mb-2">
-
     </div>
-
   </form>
-
   <ng-template pTemplate="footer">
-
     <button
       pButton
       label="Cancelar"
       (click)="onClose()">
     </button>
-
     <button
       pButton
       label="Guardar"
       class="p-button-success"
       (click)="onSave()">
     </button>
-
   </ng-template>
 
 </p-dialog>

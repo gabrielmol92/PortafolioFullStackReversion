@@ -39,22 +39,4 @@ public class UsuarioDto implements _DTOEntity{
     public void setUsername(String username) {
         this.username = username;
     }
-
-  /*  public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }*/
-    
-    
 }

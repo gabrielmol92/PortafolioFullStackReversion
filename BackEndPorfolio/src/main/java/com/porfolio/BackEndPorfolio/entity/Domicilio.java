@@ -20,35 +20,7 @@ import javax.persistence.Table;
  *
  * @author GabrielPc
  */
-//@Getter @Setter
-//@Entity
-//@Table(name="domicilio")
-//public class Domicilio implements Serializable {
-//    @Id
-//    @GeneratedValue(strategy=GenerationType.IDENTITY)
-//    @Column(name="dom_id")
-//    private Long id;
-// 
-//    @Column(name="calle")
-//    private String Calle;
-//
-//    @Column(name="provincia")
-//    private String Provincia;
-//
-//    @Column(name="ciudad") 
-//    private String Ciudad;
-// 
-//    public Domicilio() {
-//    }
-//
-//    public Domicilio(Long id, String Calle, String Provincia, String Ciudad) {
-//        this.id = id;
-//        this.Calle = Calle;
-//        this.Provincia = Provincia;
-//        this.Ciudad = Ciudad;
-//    }
-//    
-    
+
 @Entity
 @Table(name="domicilio")
 public class Domicilio implements Serializable {

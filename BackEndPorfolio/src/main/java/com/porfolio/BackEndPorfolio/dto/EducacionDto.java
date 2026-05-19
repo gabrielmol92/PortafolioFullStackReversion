@@ -4,9 +4,6 @@
  */
 package com.porfolio.BackEndPorfolio.dto;
 
-import java.io.Serializable;
-
-
 /**
  *
  * @author GabrielPc
