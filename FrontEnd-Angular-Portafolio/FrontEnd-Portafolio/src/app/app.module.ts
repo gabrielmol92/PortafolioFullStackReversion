@@ -20,6 +20,12 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EducacionCrudComponent } from './components/educacion-crud/educacion-crud.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SkillsCrudComponent } from './components/skills-crud/skills-crud.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContactComponent,
     FooterComponent,
     LoginModalComponent,
-    AcercaDeMiEditComponent
+    AcercaDeMiEditComponent,
+    EducacionCrudComponent,
+    SkillsCrudComponent
         
   ],
   imports: [
@@ -44,10 +52,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ButtonModule,
     InputTextModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [
-   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },ConfirmationService,MessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -45,8 +45,6 @@ public SoftSkillDto create(SoftSkillDto softSkillDto) {
         .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
     softSkillEntity.setPersona(persona);
     // 4. Guardar en base de datos
-    System.out.println("PERSONA ID: " + softSkillEntity.getPersona().getId());
-    System.out.println("PERSONA QUE TINE LA SKILL: " + softSkillEntity.getPersona());
     SoftSkill savedEntity = softSkillRepository.save(softSkillEntity);
     // 5. Convertir a DTO de salida
     SoftSkillDto dto = new SoftSkillDto();
@@ -54,7 +52,7 @@ public SoftSkillDto create(SoftSkillDto softSkillDto) {
     dto.setDescripcion(savedEntity.getDescripcion());
     // si tenés id en el DTO
     
-    dto.setS_id(savedEntity.getS_id());
+    dto.setId(savedEntity.getId());
     return dto;
 }
          

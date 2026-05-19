@@ -24,7 +24,7 @@ public _DTOEntity convertToDto(Object obj, _DTOEntity dto) {
   
     public Object convertToEntity(_DTOEntity dto, Object obj) {
     ModelMapper modelMapper = new ModelMapper(); 
-    modelMapper.map(dto, obj); // 👈 mapear SOBRE el objeto existente
+    modelMapper.map(dto, obj); 
     return obj;
 }
 }

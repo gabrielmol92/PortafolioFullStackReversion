@@ -25,7 +25,7 @@ public class SoftSkill implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private Long s_id;
+    private Long id;
     
     @Column(name="nombre")
     private String nombre;
@@ -40,18 +40,18 @@ public class SoftSkill implements Serializable {
     public SoftSkill() {
     }
 
-    public SoftSkill(Long s_id, String nombre, String descripcion) {
-        this.s_id = s_id;
+    public SoftSkill(Long id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Long getS_id() {
-        return s_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setS_id(Long s_id) {
-        this.s_id = s_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {

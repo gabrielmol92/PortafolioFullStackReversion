@@ -37,22 +37,13 @@ guardarCambios(data: any) {
     console.error("Falta ID");
     return;
   }
-
   this.personaService.updatePersona(this.persona.id, data).subscribe({
     next: () => {
-     
-      this.persona = { ...this.persona, ...data }; // mezcla datos
-     
+      this.persona = { ...this.persona, ...data }; // mezcla datos  
       this.modalVisible = false;
     },
     error: err => console.error(err)
   });
 }
-
-  
-
-  /* editarPersona(): void{
-    this.personaService.updatePersona(id: , this.persona).subscribe(data => {this.persona = data})
-  } */
 
 }

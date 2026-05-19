@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { hardSkills } from '../models/hard-skills';
 import { Observable } from 'rxjs';
@@ -10,13 +10,38 @@ export class HardSkillsService {
 
    URL = 'http://localhost:8090/hardSkill/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getSkill(): Observable<hardSkills[]> {
-      return this.http.get<hardSkills[]>(this.URL + 'listar');
+      return this.httpClient.get<hardSkills[]>(this.URL + 'listar');
     }
   
+     public save(hardSkill: hardSkills): Observable<any>{
+           const token = localStorage.getItem('token');
+           const headers = new HttpHeaders({
+           'Authorization': `Bearer ${token}`
+        });
+      
+         return this.httpClient.post<any>(this.URL + 'new', hardSkill,{headers})
+        }
+
+
     public updateSkill(id: number , hardSkills: hardSkills): Observable<any> {
-      return this.http.put<any>(this.URL + `update/${id}`, hardSkills);
+         const token = localStorage.getItem('token');
+         const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+  });
+
+    return this.httpClient.put<any>(this.URL + `update/${id}`, hardSkills,{headers});
     }
+
+
+    public delete(id: number): Observable<any>{
+      const token = localStorage.getItem('token');
+      const headers = new HttpHeaders({
+     'Authorization': `Bearer ${token}`
+  });
+     return this.httpClient.delete<any>(this.URL + `delete/${id}`,{headers})
+  }
+
 }

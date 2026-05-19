@@ -4,10 +4,6 @@
  */
 package com.porfolio.BackEndPorfolio.dto;
 
-import com.porfolio.BackEndPorfolio.entity.Persona;
-import java.io.Serializable;
-
-
 /**
  *
  * @author GabrielPc
@@ -16,7 +12,7 @@ import java.io.Serializable;
 public class HardSkillDto implements _DTOEntity {
     
     
-    private Long h_id;  
+    private Long id;  
     private String nombre;
     private int nivel; 
     private String img;
@@ -24,19 +20,19 @@ public class HardSkillDto implements _DTOEntity {
     public HardSkillDto() {
     }
 
-    public HardSkillDto(Long h_id, String nombre, int nivel, String img) {
-        this.h_id = h_id;
+    public HardSkillDto(Long id, String nombre, int nivel, String img) {
+        this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
         this.img = img;
     }
 
-    public Long getH_id() {
-        return h_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setH_id(Long h_id) {
-        this.h_id = h_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {

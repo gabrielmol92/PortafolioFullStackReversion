@@ -1,7 +1,6 @@
-<section id="educacion" class="finisher-header">
+<section id="educacion" class="pt-5">
   <h1><strong>Educacion</strong></h1>
   <div class="container-fluid row pt-4 g-0">
-              
        <div id="form-aca"  class="container-fluid d-flex col-md-6">
              <div class="container-fluid row g-0 pt-3" >
                <h2><strong>Formacion Academica</strong></h2>
@@ -19,10 +18,9 @@
                                 <p>{{ e.institucion }}</p>
                                 <p>{{ e.titulo }} ({{ e.periodo_inicio }} - {{ e.periodo_final }})</p>
                                 </div>
-                                 
                                     <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-1">
-                                    <button  pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
-                                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                                    <button  pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"  (click)="abrirModal(e)"></button>
+                                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="eliminarEducacion(e.id)"></button>
                                 </div>
                                 
                             </div>
@@ -52,8 +50,8 @@
 
                                 <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-1">
                                    
-                                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
-                                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"  (click)="abrirModal(e)"></button>
+                                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"  (click)="eliminarEducacion(e.id)"></button>
                                 </div>
 
                             </div>
@@ -69,10 +67,18 @@
     <div *ngIf="authService.isLogged()" class="centered">
         <div class="plus" id="plus"  [class.plus--active]="activo" (click)="togglePlus($event)">
             <div class="plus__line plus__line--v">
-            <a href="#" class="plus__link" (click)="$event.stopPropagation()">Formacion</a>
-            <a href="#" class="plus__link" (click)="$event.stopPropagation()">Curso</a>
+            <a href="#" class="plus__link" (click)="abrirModalCrear('formacion'); $event.stopPropagation()">Formacion</a>
+            <a href="#" class="plus__link" (click)="abrirModalCrear('curso'); $event.stopPropagation()">Curso</a>
             </div>
             <div class="plus__line plus__line--h"></div>
         </div>
     </div>
+
+<app-educacion-crud
+  [visible]="modalVisible"
+  [data]="educacionSeleccionada"
+  (close)="cerrarModal()"
+  [modo]="modo"
+  (save)="guardarCambios($event)">
+</app-educacion-crud>
 </section>

@@ -1,28 +1,22 @@
 <header class="header">
   <div class="container-banner">
     <div class="container-menu" data-aos="fade-down">
-      <!-- LOGO -->
       <div class="logo-yoprogramo" >
         <img class="img-logo" src="../../../assets/APLogo.png">
         <p class="yoprogramo">#YO PROGRAMO</p>
       </div>
-
-      <!-- NAV -->
       <div class="nav-bar fixed-top">
         <input id="nav-toggle" type="checkbox">
-
         <ul>
           <li><a href="#sobre-mi">Sobre Mi</a></li>
           <li><a href="#educacion">Educación</a></li>
           <li><a href="#habilidades">Habilidades</a></li>
-          <li><a href="#">Proyectos</a></li>
           <li><a href="#contacto">Contacto</a></li>
           <li>
               <a href="#" *ngIf="!isLogged"
                 (click)="abrirLogin(); $event.preventDefault()">
                 Login
               </a>
-
               <a href="#" *ngIf="isLogged"
                 (click)="logout(); $event.preventDefault()">
                 Logout
@@ -39,21 +33,17 @@
 
     </div>
   </div>
-
-  <!-- BANNER -->
   <div class="banner">
     <img class="img-banner" src="../../../assets/banner.png">
 
     <div class="next">
-      <a href="">
+      <a href="#sobre-mi">
         <span></span>
       </a>
     </div>
   </div>
 
-  <!-- TEXTO HERO -->
   <div class="container-texto">
-
     <h1 style="text-align: center;">
       Hola, soy Gabriel 👋
     </h1>

@@ -3,7 +3,7 @@
     <div class="row g-0">
      <div class="col-sm-6 ">
       <h2>Soft Skills</h2>
-      
+ 
      <nav class="accordion arrows row g-0">
 
           <input type="radio" name="accordion" id="acc-close" checked />
@@ -27,8 +27,8 @@
                        </label> 
                      </div> 
                       <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-2 mt-1">       
-                         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
-                         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+                         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"  (click)="abrirModalEditar(s, 'soft')"></button>
+                         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="eliminarSkill(s.id,'soft')"></button>
                       </div>
                     </div> 
 
@@ -39,16 +39,11 @@
                     </div>      
                </section>
           </ng-container>
-
       </nav>
-
      </div>
           <div class="container-fluid col-sm-6">
               <h2>Hard Skills</h2>
-
           <div class="container-fluid g-0 hard-skills">
-
-
          <div class="skill row pb-3 g-0" *ngFor="let h of hardSkill">
              <div class="col-3 cont-tec">
                   <img [src]="h.img">
@@ -63,26 +58,31 @@
              </div>
                  <div *ngIf="authService.isLogged()" id="acciones" class="col-sm-1">
                                    
-                        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
-                        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
-                 </div>
-       
+                        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"  (click)="abrirModalEditar(h, 'hard')"></button>
+                        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="eliminarSkill(h.id,'hard')"></button>
+                 </div>    
          </div>
-
      </div>
-
      </div>
-
-    </div>
-    
+    </div>  
     <div *ngIf="authService.isLogged()" class="centered2 container-fluid">
           <div class="plus" id="plus"  [class.plus--active]="activo" (click)="togglePlus($event)">
                <div class="plus__line plus__line--v">
-               <a href="#" class="plus__link" (click)="$event.stopPropagation()">Soft</a>
-               <a href="#" class="plus__link" (click)="$event.stopPropagation()">Hard</a>
+               <a href="#" class="plus__link" (click)="abrirModalCrear('soft'); $event.stopPropagation()">Soft</a>
+               <a href="#" class="plus__link"  (click)="abrirModalCrear('hard'); $event.stopPropagation()">Hard</a>
                </div>
                <div class="plus__line plus__line--h"></div>
           </div>
      </div>
+
+ <app-skills-crud
+   [visible]="modalVisible"
+   [modo]="modo"
+   [tipo]="tipoSkill"
+   [data]="skillSeleccionada"
+   (close)="cerrarModal()"
+   (save)="guardarSkill($event)">
+</app-skills-crud>
+
 
 </section>

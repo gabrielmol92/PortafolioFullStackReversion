@@ -1,5 +1,5 @@
 export class educacion{
-   id?: number;
+   id: number;
    titulo: String;
    institucion: String;
    periodo_inicio: String;
@@ -8,7 +8,8 @@ export class educacion{
    tipo: String;
    link: String;
 
-   constructor(titulo: String , institucion: String, periodo_inicio: String, periodo_final: String, img: String, tipo: String, link: String){
+   constructor(id: number,titulo: String , institucion: String, periodo_inicio: String, periodo_final: String, img: String, tipo: String, link: String){
+    this.id = id;
     this.titulo = titulo;
     this.institucion = institucion;
     this.periodo_inicio = periodo_inicio;

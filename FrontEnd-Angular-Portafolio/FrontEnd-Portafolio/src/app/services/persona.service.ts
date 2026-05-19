@@ -10,10 +10,10 @@ import { persona } from '../models/persona.model';
 })
 export class PersonaService {
   URL = 'http://localhost:8090/persona/';
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getPersona(): Observable<persona> {
-    return this.http.get<persona>(this.URL+ 'obtener');
+    return this.httpClient.get<persona>(this.URL+ 'obtener');
   }
 
   public updatePersona(id: number , persona: persona): Observable<any> {
@@ -23,7 +23,7 @@ export class PersonaService {
     'Authorization': `Bearer ${token}`
   });
 
-  return this.http.put<any>(this.URL + `editar/${id}`, persona, { headers });
+  return this.httpClient.put<any>(this.URL + `editar/${id}`, persona, { headers });
 }
 
 

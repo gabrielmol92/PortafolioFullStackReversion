@@ -5,10 +5,9 @@
 package com.porfolio.BackEndPorfolio.controller;
 
 import com.porfolio.BackEndPorfolio.dto.PersonaDto;
-import com.porfolio.BackEndPorfolio.entity.Persona;
 import com.porfolio.BackEndPorfolio.service.IPersonaService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,26 +33,28 @@ public class PersonaController {
     
     
     @PostMapping("/persona/new")
-    public String createPersona (@RequestBody PersonaDto persona){
-            personaService.create(persona);
-        return "La persona fue creada";
+    public ResponseEntity<PersonaDto> createPersona (@RequestBody PersonaDto persona){
+           PersonaDto created = personaService.create(persona);
+             return ResponseEntity
+             .status(HttpStatus.CREATED)
+             .body(created);
     
     }
     
-     @DeleteMapping("/persona/delete/{id}")
-   public String deletePersona (@PathVariable Long id){
+    @DeleteMapping("/persona/delete/{id}")
+    public ResponseEntity<Void> deletePersona (@PathVariable Long id){
        personaService.deletePersona(id);
-        return "Persona borrada";
+       return ResponseEntity.noContent().build(); 
        
    
    }
    
    
    @PutMapping("/persona/editar/{id}")
-  public ResponseEntity<?> editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
+  public ResponseEntity<PersonaDto> editPersona(@RequestBody PersonaDto personaDto,@PathVariable Long id)                              
           { 
-       personaService.updatePersona(personaDto, id);
-       return ResponseEntity.ok().body("{\"mensaje\":\"ok\"}");
+       PersonaDto updated =  personaService.updatePersona(personaDto, id);
+       return ResponseEntity.ok().body(updated);
    }
   
   

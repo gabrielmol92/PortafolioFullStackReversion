@@ -22,19 +22,29 @@ export class EducacionService {
   }
 
   public save(educacion: educacion): Observable<any>{
+     const token = localStorage.getItem('token');
+     const headers = new HttpHeaders({
+     'Authorization': `Bearer ${token}`
+  });
 
-
-   return this.httpClient.post<any>(this.URL + 'new', educacion)
+   return this.httpClient.post<any>(this.URL + 'new', educacion,{headers})
   }
 
   public update(id: number , educacion: educacion): Observable<any> {
+     const token = localStorage.getItem('token');
+     const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
 
-
-    return this.httpClient.put<any>(this.URL + `update/${id}`, educacion);
+    return this.httpClient.put<any>(this.URL + `update/${id}`, educacion,{headers});
   }
  
   public delete(id: number): Observable<any>{
-    return this.httpClient.delete<any>(this.URL + `delete/${id}`)
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+    return this.httpClient.delete<any>(this.URL + `delete/${id}`,{headers})
   }
 
 }

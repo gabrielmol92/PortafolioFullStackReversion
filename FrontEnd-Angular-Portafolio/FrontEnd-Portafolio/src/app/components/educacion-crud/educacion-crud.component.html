@@ -1,0 +1,64 @@
+<p-dialog 
+  [header]="modo === 'editar' ? 'Editar educación' : 'Agregar educación'"
+  [(visible)]="visible" 
+  [modal]="true"
+  (onHide)="onClose()"
+    appendTo="body"
+  [style]="{ width: '400px' }">
+  <form [formGroup]="form">
+    <input pInputText formControlName="titulo" placeholder="Titulo" class="w-100 mb-2">
+      <small
+        class="p-error"
+       *ngIf="
+        form.get('titulo')?.invalid &&
+        form.get('titulo')?.touched
+        ">
+       El título es obligatorio
+     </small>
+    <input pInputText formControlName="institucion" placeholder="Institucion" class="w-100 mb-2">
+      <small
+        class="p-error"
+       *ngIf="
+        form.get('institucion')?.invalid &&
+        form.get('institucion')?.touched
+        ">
+       La institucion es obligatoria
+     </small>
+
+    <input type="number"formControlName="periodo_inicio" placeholder="Año inicio"  class="w-100 mb-2">
+     <small
+        class="p-error"
+        *ngIf="
+          form.get('periodo_inicio')?.invalid &&
+          form.get('periodo_inicio')?.touched
+        ">
+        El año debe estar entre 1950 y 2040
+     </small>
+    <input  type="number" formControlName="periodo_final"  placeholder="Año fin"class="w-100 mb-2">
+        <small
+      class="p-error"
+      *ngIf="
+        form.get('periodo_final')?.invalid &&
+        form.get('periodo_final')?.touched
+      ">
+      El año debe estar entre 1950 y 2040
+      </small>
+      <small
+        class="text-danger d-block"
+        *ngIf="
+          form.errors?.['rangoInvalido'] &&
+          form.get('periodo_final')?.touched
+        ">
+
+        El año final no puede ser menor al inicial
+
+      </small>
+    <input pInputText formControlName="img" placeholder="URL imagen" class="w-100 mb-2">
+    <input pInputText formControlName="tipo" placeholder="Tipo" class="w-100 mb-2"  [readonly]="modo === 'crear'">
+    <input pInputText formControlName="link" placeholder="Link" class="w-100 mb-2" >
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancelar" (click)="onClose()"></button>
+    <button pButton label="Guardar" (click)="onSave()" class="p-button-success"></button>
+  </ng-template>
+</p-dialog>

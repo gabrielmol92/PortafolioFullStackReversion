@@ -4,9 +4,6 @@
  */
 package com.porfolio.BackEndPorfolio.dto;
 
-import java.io.Serializable;
-
-
 /**
  *
  * @author GabrielPc
@@ -14,25 +11,25 @@ import java.io.Serializable;
 
 public class SoftSkillDto implements _DTOEntity {
 
-    private Long s_id;
+    private Long id;
     private String nombre;
     private String descripcion;
 
     public SoftSkillDto() {
     }
 
-    public SoftSkillDto(Long s_id, String nombre, String descripcion) {
-        this.s_id = s_id;
+    public SoftSkillDto(Long id, String nombre, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public Long getS_id() {
-        return s_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setS_id(Long s_id) {
-        this.s_id = s_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -54,7 +51,7 @@ public class SoftSkillDto implements _DTOEntity {
     @Override
     public String toString() {
         return "SoftSkillDto{" +
-                "s_id=" + s_id +
+                "id=" + id +
                 ", nombre=" + nombre +
                 ", descripcion=" + descripcion +
                 '}';

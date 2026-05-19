@@ -45,15 +45,11 @@ public class AuthController {
     // LOGIN
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDto> login(@RequestBody LoginDto req) {
-
         Usuario user = usuarioService.buscarEntidadPorUsername(req.getUsername());
-
         if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
         String token = jwtUtil.generateToken(user.getUsername());
-
         return ResponseEntity.ok(new AuthResponseDto(token));
     }
 }

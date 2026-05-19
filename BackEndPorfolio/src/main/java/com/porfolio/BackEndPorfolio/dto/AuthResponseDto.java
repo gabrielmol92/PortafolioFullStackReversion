@@ -15,8 +15,6 @@ public class AuthResponseDto {
     public AuthResponseDto() {
     }
     
-    
-
     public AuthResponseDto(String token) {
         this.token = token;
     }

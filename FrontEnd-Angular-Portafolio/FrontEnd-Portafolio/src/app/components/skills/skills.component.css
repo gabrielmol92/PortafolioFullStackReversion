@@ -176,14 +176,15 @@
   
 
 .centered2{
-   position: absolute;
-  bottom: 50px;  
+  position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  width: auto;  
+  transform: translateX(-50%) translateZ(0);
+  width: auto;
   display: flex;
   justify-content: center;
   padding-bottom: 90px;
+  will-change: transform;
+  backface-visibility: hidden;
 }
   
 
