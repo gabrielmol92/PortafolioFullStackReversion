@@ -2,19 +2,14 @@ services:
   - type: web
     name: backend-portfolio
     env: java
-
     buildCommand: ./mvnw clean install -DskipTests
     startCommand: java -jar target/*.jar
-
     envVars:
       - key: JAVA_VERSION
         value: "17"
-
       - key: SPRING_DATASOURCE_URL
         value: jdbc:mysql://104.196.216.59:48723/railway
-
       - key: SPRING_DATASOURCE_USERNAME
         value: root
-
       - key: SPRING_DATASOURCE_PASSWORD
         value: DxIbQRgnVVYBIzgffQdGkxvgxUHzRdHu
