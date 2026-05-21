@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: backend-portfolio
+    runtime: java
+    rootDir: BackEndPorfolio
+    buildCommand: ./mvnw clean package
+    startCommand: java -jar target/*.jar
