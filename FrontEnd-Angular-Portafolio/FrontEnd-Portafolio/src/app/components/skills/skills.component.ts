@@ -29,19 +29,47 @@ export class SkillsComponent implements OnInit {
     this.cargarHardSkill()
   }
 
-  cargarSkills(): void {
+cargarSkills(): void {
+  if (this.authService.isDemo()) {
+    const data = sessionStorage.getItem(
+      'demoSoftSkills'
+    );
+    if (data) {
+      this.skill = JSON.parse(data);
+      return;
+    }
+  }
   this.skillService.getSkill().subscribe(data => {
     this.skill = data;
-    })}
+    if (this.authService.isDemo()) {
+      sessionStorage.setItem(
+        'demoSoftSkills',
+        JSON.stringify(data)
+      );
+    }
+  });
+}
    
-  cargarHardSkill() : void {
-    this.hardSkillService.getSkill().subscribe(data =>{
-      this.hardSkill = data;
-  this.hardSkill.forEach(element => {
-        console.log(element.id)
-      });
-    })
-  }  
+  cargarHardSkill(): void {
+  if (this.authService.isDemo()) {
+    const data = sessionStorage.getItem(
+      'demoHardSkills'
+    );
+    if (data) {
+      this.hardSkill = JSON.parse(data);
+      return;
+    }
+  }
+  this.hardSkillService.getSkill().subscribe(data => {
+    this.hardSkill = data;
+    if (this.authService.isDemo()) {
+      sessionStorage.setItem(
+        'demoHardSkills',
+        JSON.stringify(data)
+      );
+    }
+  });
+}
   togglePlus(event: Event) {
     event.preventDefault();
     this.activo = !this.activo;
@@ -101,7 +129,29 @@ private crearSkill(data: any): void {
 }
 
 private editarSoftSkill(data: any): void {
+  if (this.authService.isDemo()) {
+    const index = this.skill.findIndex(
+      s => s.id === this.skillSeleccionada.id
+    );
+    if (index !== -1) {
+      this.skill[index] = {
+        ...this.skill[index],
+        ...data
+      };
+      sessionStorage.setItem(
+        'demoSoftSkills',
+        JSON.stringify(this.skill)
+      );
 
+    }
+    this.cerrarModal();
+    this.mostrarExito(
+      'Actualizado',
+      'Soft skill actualizada temporalmente'
+    );
+
+    return;
+  }
   this.skillService
     .updateSkill(this.skillSeleccionada.id, data)
     .subscribe({
@@ -131,6 +181,28 @@ private editarSoftSkill(data: any): void {
 }
 
 private editarHardSkill(data: any): void {
+  if (this.authService.isDemo()) {
+    const index = this.hardSkill.findIndex(
+      h => h.id === this.skillSeleccionada.id
+    );
+    if (index !== -1) {
+      this.hardSkill[index] = {
+        ...this.hardSkill[index],
+        ...data
+      }
+      sessionStorage.setItem(
+        'demoHardSkills',
+        JSON.stringify(this.hardSkill)
+      );
+
+    }
+    this.cerrarModal();
+    this.mostrarExito(
+      'Actualizado',
+      'Hard skill actualizada temporalmente'
+    );
+    return;
+  }
   this.hardSkillService
     .updateSkill(this.skillSeleccionada.id, data)
     .subscribe({
@@ -143,6 +215,7 @@ private editarHardSkill(data: any): void {
             ...this.hardSkill[index],
             ...data
           };
+
         }
         this.cerrarModal();
         this.mostrarExito(
@@ -160,7 +233,23 @@ private editarHardSkill(data: any): void {
 }
 
 private crearSoftSkill(data: any): void {
-
+  if (this.authService.isDemo()) {
+    const nueva = {
+      id: Date.now(),
+      ...data
+    };
+    this.skill.push(nueva);
+    sessionStorage.setItem(
+      'demoSoftSkills',
+      JSON.stringify(this.skill)
+    );
+    this.cerrarModal();
+    this.mostrarExito(
+      'Creado',
+      'Soft skill creada temporalmente'
+    );
+    return;
+  }
   this.skillService
     .save(data)
     .subscribe({
@@ -180,8 +269,24 @@ private crearSoftSkill(data: any): void {
       }
     });
 }
-
 private crearHardSkill(data: any): void {
+  if (this.authService.isDemo()) {
+    const nueva = {
+      id: Date.now(),
+      ...data
+    };
+    this.hardSkill.push(nueva);
+    sessionStorage.setItem(
+      'demoHardSkills',
+      JSON.stringify(this.hardSkill)
+    );
+    this.cerrarModal();
+    this.mostrarExito(
+      'Creado',
+      'Hard skill creada temporalmente'
+    );
+    return;
+  }
   this.hardSkillService
     .save(data)
     .subscribe({
@@ -193,11 +298,10 @@ private crearHardSkill(data: any): void {
           'Hard skill creada correctamente'
         );
       },
-
       error: err => {
         this.mostrarError(
           'No se pudo crear la hard skill'
-        );
+        ); 
         console.error(err);
       }
     });
@@ -252,6 +356,20 @@ private confirmarEliminacionSkill(
 }
 
 private eliminarSoftSkill(id: number): void {
+  if (this.authService.isDemo()) {
+    this.skill = this.skill.filter(
+      s => s.id !== id
+    );
+    sessionStorage.setItem(
+      'demoSoftSkills',
+      JSON.stringify(this.skill)
+    );
+    this.mostrarExito(
+      'Eliminado',
+      'Soft skill eliminada temporalmente'
+    );
+    return;
+  }
   this.skillService.delete(id).subscribe({
     next: () => {
       this.skill = this.skill.filter(
@@ -272,6 +390,20 @@ private eliminarSoftSkill(id: number): void {
 }
 
 private eliminarHardSkill(id: number): void {
+  if (this.authService.isDemo()) {
+    this.hardSkill = this.hardSkill.filter(
+      h => h.id !== id
+    );
+    sessionStorage.setItem(
+      'demoHardSkills',
+      JSON.stringify(this.hardSkill)
+    );
+    this.mostrarExito(
+      'Eliminado',
+      'Hard skill eliminada temporalmente'
+    );
+    return;
+  }
   this.hardSkillService.delete(id).subscribe({
     next: () => {
       this.hardSkill = this.hardSkill.filter(

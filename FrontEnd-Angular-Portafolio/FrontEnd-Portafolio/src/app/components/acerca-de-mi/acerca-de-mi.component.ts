@@ -19,9 +19,26 @@ export class AcercaDeMiComponent implements OnInit {
     this.cargarPersona();
   }
 
-  cargarPersona():void{
-    this.personaService.getPersona().subscribe(data => {this.persona = data})
+ cargarPersona(): void {
+  if (this.authService.isDemo()) {
+    const data = sessionStorage.getItem(
+      'demoPersona'
+    );
+    if (data) {
+      this.persona = JSON.parse(data);
+      return;
+    }
   }
+  this.personaService.getPersona().subscribe(data => {
+    this.persona = data;
+    if (this.authService.isDemo()) {
+      sessionStorage.setItem(
+        'demoPersona',
+        JSON.stringify(data)
+      );
+    }
+  });
+}
 
   abrirModal() {
   this.modalVisible = true;
@@ -31,19 +48,34 @@ cerrarModal() {
   this.modalVisible = false;
 }
 
-guardarCambios(data: any) {
+guardarCambios(data: any): void {
+  if (this.authService.isDemo()) {
+    this.persona = {
+      ...this.persona,
+      ...data
+    };
+    sessionStorage.setItem(
+      'demoPersona',
+      JSON.stringify(this.persona)
+    );
+    this.modalVisible = false;
+    return;
+  }
   if (!this.persona.id) {
-      console.log(this.persona)
     console.error("Falta ID");
     return;
   }
-  this.personaService.updatePersona(this.persona.id, data).subscribe({
-    next: () => {
-      this.persona = { ...this.persona, ...data }; // mezcla datos  
-      this.modalVisible = false;
-    },
-    error: err => console.error(err)
-  });
+  this.personaService
+    .updatePersona(this.persona.id, data)
+    .subscribe({
+      next: () => {
+        this.persona = {
+          ...this.persona,
+          ...data
+        };
+        this.modalVisible = false;
+      },
+      error: err => console.error(err)
+    });
 }
-
 }

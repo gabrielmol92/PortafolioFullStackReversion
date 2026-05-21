@@ -42,8 +42,12 @@ constructor(private fb: FormBuilder, private messageService: MessageService) {
   ngOnInit(): void {
   }
 
-  ngOnChanges() {
-  if (this.modo === 'editar' && this.data) {
+ ngOnChanges() {
+  this.actualizarValidaciones();
+  if (
+    this.modo === 'editar' &&
+    this.data
+  ) {
     this.form.patchValue(this.data);
   }
   if (this.modo === 'crear') {
@@ -68,6 +72,29 @@ onSave() {
       detail: 'Completá todos los campos correctamente'
     });
     }
+  }
+
+private actualizarValidaciones(): void {
+    const descripcion =
+      this.form.get('descripcion');
+    const nivel =
+      this.form.get('nivel');
+    if (this.tipo === 'soft') {
+      descripcion?.setValidators([
+        Validators.required
+      ]);
+      nivel?.clearValidators();
+    }
+    else if (this.tipo === 'hard') {
+      nivel?.setValidators([
+        Validators.required,
+        Validators.min(0),
+        Validators.max(100)
+      ]);
+      descripcion?.clearValidators();
+    }
+    descripcion?.updateValueAndValidity();
+    nivel?.updateValueAndValidity();
   }
 
 

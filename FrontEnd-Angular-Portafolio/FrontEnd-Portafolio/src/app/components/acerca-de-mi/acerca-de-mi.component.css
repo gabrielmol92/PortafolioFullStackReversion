@@ -12,7 +12,6 @@
     display: flex;
   
 }
-
 .cont-sobre{
  text-align: center;
  font-family: 'PT Serif', serif;
@@ -161,10 +160,6 @@
 }
 
 
-
-
-
-
 @keyframes abajo {
     0% {
       top: 5px;
@@ -183,24 +178,18 @@
   @keyframes cv {
     0% {
      transform: rotate(0deg);
-    
    }
-   
    25% {
      transform: rotate(20deg);
-   
    }
    50% {
      transform: rotate(0deg);
-   
    }
    55% {
      transform: rotate(0deg);
-     
    }
    70% {
      transform: rotate(0deg);
-   
    }
    100% {
      transform: rotate(-360deg);

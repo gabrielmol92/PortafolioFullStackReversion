@@ -1,19 +1,17 @@
 .header{
     display: block;
-    
- 
    }
  
-   .container-menu{
+  .container-menu{
      width: 100%;
      height: 60px;
      display:flex;
      background-color: rgb(19, 117, 112);
      position:fixed;
-     z-index: 1000;
-     /* rgb(15, 82, 79); */
-    
-   }
+     top:0;
+     left:0;
+     z-index:1000;
+}
  
    .logo-yoprogramo{
      display: flex;
@@ -54,22 +52,25 @@
       margin-bottom: 0;
   
    }  
- 
-   .nav-bar ul li{
-     height:100%;
-     padding-left: 0.5rem;
-     padding-right: 0.5rem;
-     display: flex;
-     align-items: center;
-   }
- 
-   .nav-bar ul li a{
-     text-decoration: none;
-     color:#ffffff;
-     font-weight: bold;
-     
-   }
- 
+
+    .nav-bar ul li{
+      height:100%;
+      display:flex;
+      align-items:center;
+    }
+
+    .nav-bar ul li a{
+      text-decoration: none;
+      color:#ffffff;
+      font-weight: bold;
+      display:flex;
+      align-items:center;
+      height:100%;
+      width:100%;
+      padding: 0 0.5rem;
+    }
+
+
    .nav-bar ul li:hover {
      background: rgba(0,0,0,.8);
      transition:0.4s;
@@ -83,22 +84,21 @@
      
  
    }
+#nav-toggle{
+   display:none;
+}
  
-   #nav-toggle {
-     position: absolute;
-     top: -100px;
- }
- 
-    .nav-bar .btn-menu{
-   
+.btn-menu{
       display: none;
       position: absolute;
       right: 5%;
       top:50%;
       transform: translateY(-50%);
-   }
+      cursor:pointer;
+      z-index:2000;
+}
  
-     .nav-bar .btn-menu .line{
+.nav-bar .btn-menu .line{
          width:30px;
          height: 5px;
          background-color: #fff;
@@ -107,7 +107,7 @@
          transition: all .3s ease-in-out;
      } 
  
-   .banner{
+.banner{
      width: 100%;
      height: 100vh;
      display: flex;
@@ -186,56 +186,72 @@
 
 
  @media screen and (max-width:768px){
+   .nav-bar{
+    flex:1;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    position:relative;
+  }
+
   .nav-bar ul{
-  float: none;
-  position: fixed;
-  z-index: 9;
-  left: 0;
-  right: 0;
-  top: 100px;
-  bottom: 100%;
-  width: auto;
-  height: auto;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background-color: rgba(0,0,0,.8);
-  overflow: hidden;
-  box-sizing: border-box;
-  transition: all .5s ease-in-out;
-}
-  .nav-bar ul li a {
-  font-size: 20px;
+    position: fixed;
+    top:60px;
+    left:0;
+    width:100%;
+    height:0;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    background-color: rgba(0,0,0,.9);
+    overflow:hidden;
+    transition: height .5s ease;
+    z-index:999;
 }
 
+  .nav-bar ul li{
+    width:100%;
+    height:70px;
+    justify-content:center;
+  }
 
+  .nav-bar ul li a{
+    font-size:20px;
+    width:100%;
+    justify-content:center;
+  }
 
-.nav-bar :checked ~ ul {
-  bottom: 0;
-}
-.nav-bar .btn-menu {
-  display: block;
-}
-.nav-bar :checked ~ .btn-menu .line:nth-child(1) {
-  transform: translateY(10px) rotate(225deg);
-}
-.nav-bar :checked ~ .btn-menu .line:nth-child(3) {
-  transform: translateY(-10px) rotate(-225deg);
-}
-.nav-bar :checked ~ .btn-menu .line:nth-child(2) {
-  opacity: 0;
+#nav-toggle:checked ~ ul{
+    height: calc(100vh - 60px);
 }
 
+ .btn-menu{
+   display:block;
+}
+
+  #nav-toggle:checked ~ .btn-menu .line:nth-child(1){
+    transform: translateY(10px) rotate(225deg);
+  }
+
+  #nav-toggle:checked ~ .btn-menu .line:nth-child(2){
+    opacity:0;
+  }
+
+  #nav-toggle:checked ~ .btn-menu .line:nth-child(3){
+    transform: translateY(-10px) rotate(-225deg);
+  }
 
   .logo-yoprogramo{
       flex:90%;
   }
-
-    }
-
+}
 
     @media screen and (max-width: 500px) {
       .yoprogramo {
        display:none;
      }
  
- }
+   }

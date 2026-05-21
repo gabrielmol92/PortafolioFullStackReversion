@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
 
   mostrarLogin = false;
-  isLogged = false; // 👈 VARIABLE
+  isLogged = false; // 
 
   constructor(private authService: AuthService) {}
 
@@ -25,8 +25,6 @@ export class HeaderComponent implements OnInit {
 
   cerrarLogin() {
     this.mostrarLogin = false;
-
-    // 🔥 ACTUALIZA DESPUÉS DEL LOGIN
     this.isLogged = this.authService.isLogged();
   }
 

@@ -22,7 +22,7 @@ export class EducacionService {
   }
 
   public save(educacion: educacion): Observable<any>{
-     const token = localStorage.getItem('token');
+     const token = sessionStorage.getItem('token');
      const headers = new HttpHeaders({
      'Authorization': `Bearer ${token}`
   });
@@ -31,7 +31,7 @@ export class EducacionService {
   }
 
   public update(id: number , educacion: educacion): Observable<any> {
-     const token = localStorage.getItem('token');
+     const token = sessionStorage.getItem('token');
      const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });
@@ -40,7 +40,7 @@ export class EducacionService {
   }
  
   public delete(id: number): Observable<any>{
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
   });

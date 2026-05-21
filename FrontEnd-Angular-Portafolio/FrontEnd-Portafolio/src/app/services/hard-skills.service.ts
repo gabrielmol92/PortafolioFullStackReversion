@@ -17,7 +17,7 @@ export class HardSkillsService {
     }
   
      public save(hardSkill: hardSkills): Observable<any>{
-           const token = localStorage.getItem('token');
+           const token = sessionStorage.getItem('token');
            const headers = new HttpHeaders({
            'Authorization': `Bearer ${token}`
         });
@@ -27,7 +27,7 @@ export class HardSkillsService {
 
 
     public updateSkill(id: number , hardSkills: hardSkills): Observable<any> {
-         const token = localStorage.getItem('token');
+         const token = sessionStorage.getItem('token');
          const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
   });
@@ -37,7 +37,7 @@ export class HardSkillsService {
 
 
     public delete(id: number): Observable<any>{
-      const token = localStorage.getItem('token');
+      const token = sessionStorage.getItem('token');
       const headers = new HttpHeaders({
      'Authorization': `Bearer ${token}`
   });

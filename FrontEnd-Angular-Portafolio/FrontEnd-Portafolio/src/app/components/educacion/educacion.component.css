@@ -18,8 +18,7 @@
     font-size:1.2rem;
     padding-right: 3rem;
 }
-  
-  
+
 .cont-card{
     height: 140px;
     margin-bottom: 0.5rem;
@@ -104,10 +103,48 @@
 
 
 
-  @media screen and (max-width:768px){
-    #cont-idioma img{
-      max-height: 320px;
-    
-    
-    }
+@media screen and (max-width:768px){
+  .cont-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 95%;
+    padding: 1rem;
+    margin-bottom: 2rem;
   }
+
+  .contenedor-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .contenedor-img .img-ed{
+    max-width: 140px;
+    max-height: 140px;
+  }
+
+  .ed{
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .ed > p{
+    padding-right: 0;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #acciones{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+}
