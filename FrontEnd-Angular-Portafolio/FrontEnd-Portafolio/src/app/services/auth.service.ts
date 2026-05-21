@@ -15,13 +15,25 @@ export class AuthService {
   }
 
   saveToken(token: string) {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
   
+ saveUsername(username: string) {
+    sessionStorage.setItem(
+      'username',
+      username
+    );
+  }
+
+  getUsername(): string | null {
+    return sessionStorage.getItem(
+      'username'
+    );
+  }
 
 isLogged(): boolean {
   const token = this.getToken();
@@ -35,7 +47,13 @@ isLogged(): boolean {
   }
 }
 
-  logout() {
-    localStorage.removeItem('token');
+  isDemo(): boolean {
+    return this.getUsername() === 'demo';
   }
+
+
+logout() {
+  sessionStorage.clear();
+  window.location.reload();
+}
 }

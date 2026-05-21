@@ -29,12 +29,35 @@ togglePlus(event: Event): void {
   event.preventDefault();
   this.activo = !this.activo;
 }
-
-cargarEducacion(): void {
-  this.educacionService.getEducacion().subscribe(data => {
-    this.ed = data;
-  });
+  cargarEducacion(): void {
+  if (this.authService.isDemo()) {
+    const temporal =
+      sessionStorage.getItem(
+        'educacion-demo'
+      );
+    if (temporal) {
+      this.ed = JSON.parse(temporal);
+      return;
+    }
+  }
+  this.educacionService
+    .getEducacion()
+    .subscribe(data => {
+      this.ed = data;
+      if (this.authService.isDemo()) {
+        this.guardarEducacionTemporal();
+      }
+    });
 }
+
+
+private guardarEducacionTemporal(): void {
+  sessionStorage.setItem(
+    'educacion-demo',
+    JSON.stringify(this.ed)
+  );
+}
+
   
 abrirModal(e: any) {
   this.modo = 'editar';
@@ -65,10 +88,30 @@ guardarCambios(data: any) {
 
 private actualizarEducacion(data: any): void {
   if (!this.educacionSeleccionada?.id) {
-    this.mostrarError('Falta ID de la educación');
+    this.mostrarError(
+      'Falta ID de la educación'
+    );
     return;
   }
-  this.educacionService
+  if (this.authService.isDemo()) {
+    const index = this.ed.findIndex(
+      e => e.id === this.educacionSeleccionada.id
+    );
+    if (index !== -1) {
+      this.ed[index] = {
+        ...this.ed[index],
+        ...data
+      };
+      this.guardarEducacionTemporal();
+      this.mostrarExito(
+        'Actualizado',
+        'Educacion actualizada temporalmente'
+      );
+    }
+    this.cerrarYLimpiarModal();
+    return;
+  }
+ this.educacionService
     .update(this.educacionSeleccionada.id, data)
     .subscribe({
       next: () => {
@@ -83,7 +126,7 @@ private actualizarEducacion(data: any): void {
         }
         this.mostrarExito(
           'Actualizado',
-          'Actualizado correctamente'
+          'Educacion actualizada correctamente'
         );
         this.cerrarYLimpiarModal();
       },
@@ -97,6 +140,20 @@ private actualizarEducacion(data: any): void {
 }
 
 private crearEducacion(data: any): void {
+  if (this.authService.isDemo()) {
+    const nueva = {
+      id: Date.now(),
+      ...data
+    };
+    this.ed.push(nueva);
+    this.guardarEducacionTemporal();
+    this.mostrarExito(
+      'Creado',
+      'Creado temporalmente'
+    );
+    this.cerrarYLimpiarModal();
+    return;
+  }
   this.educacionService.save(data).subscribe({
     next: (nueva) => {
       this.ed.push(nueva);
@@ -152,6 +209,17 @@ eliminarEducacion(id: number): void {
 }
 
 private confirmarEliminacion(id: number): void {
+  if (this.authService.isDemo()) {
+    this.ed = this.ed.filter(
+      e => e.id !== id
+    );
+    this.guardarEducacionTemporal();
+    this.mostrarExito(
+      'Eliminado',
+      'Eliminado temporalmente'
+    );
+    return;
+  }
   this.educacionService.delete(id).subscribe({
     next: () => {
       this.ed = this.ed.filter(

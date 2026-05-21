@@ -17,7 +17,7 @@ export class PersonaService {
   }
 
   public updatePersona(id: number , persona: persona): Observable<any> {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   const headers = new HttpHeaders({
     'Authorization': `Bearer ${token}`
