@@ -2,7 +2,6 @@ services:
   - type: web
     name: backend-portfolio
     env: java
-    rootDirectory: BackEndPorfolio
     buildCommand: ./mvnw clean install -DskipTests
     startCommand: java -jar target/BackEndPorfolio-0.0.1-SNAPSHOT.jar
     envVars:
