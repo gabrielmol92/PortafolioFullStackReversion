@@ -2,13 +2,14 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { softSkills } from '../models/softSkills.model'
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SoftSkillsService {
 
-    URL = 'http://localhost:8090/softSkill/';
+    URL = `${environment.apiUrl}/softSkill/`;
 
   constructor(private httpClient: HttpClient) { }
 
