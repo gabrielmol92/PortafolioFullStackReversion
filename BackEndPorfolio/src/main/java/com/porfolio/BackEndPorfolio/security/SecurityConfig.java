@@ -51,20 +51,24 @@ public class SecurityConfig {
         return http.build();
     }
     
-   @Bean
- public CorsConfigurationSource corsConfigurationSource() {
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
 
-    CorsConfiguration config = new CorsConfiguration();
+        CorsConfiguration config = new CorsConfiguration();
 
-    config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-    config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
-    config.setAllowedHeaders(Arrays.asList("*"));
-    config.setAllowCredentials(true);
+        config.setAllowedOrigins(Arrays.asList(
+            "http://localhost:4200",
+            "https://portafolio-full-stack-reversion.vercel.app"
+        ));
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", config);
+        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("*"));
+        config.setAllowCredentials(true);
 
-    return source;
-} 
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+
+        return source;
+    }
     
 }
