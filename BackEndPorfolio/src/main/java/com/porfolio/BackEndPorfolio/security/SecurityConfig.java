@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.porfolio.BackEndPorfolio.security;
 
-/**
- *
- * @author GabrielPc
- */
 import org.springframework.web.cors.*;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
@@ -30,20 +22,17 @@ public class SecurityConfig {
             .csrf().disable()
             .cors().configurationSource(corsConfigurationSource()).and()
 
-            .authorizeRequests()           
+            .authorizeRequests()            
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                // 🔓 GET públicos
                 .antMatchers(HttpMethod.GET,
+                        "/",
                         "/persona/**",
                         "/educacion/**",
                         "/softSkill/**",
                         "/hardSkill/**"
                 ).permitAll()
-
-                // 🔒 resto protegido
                 .anyRequest().authenticated()
-
 
             .and()
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
