@@ -35,23 +35,16 @@ public class SoftSkillServiceImp implements ISoftSkillService  {
     
     @Override
 public SoftSkillDto create(SoftSkillDto softSkillDto) {
-    // 1. Crear entidad
     SoftSkill softSkillEntity = new SoftSkill();
-    // 2. Mapear campos simples manualmente
     softSkillEntity.setNombre(softSkillDto.getNombre());
     softSkillEntity.setDescripcion(softSkillDto.getDescripcion());
-    // 3. Asignar persona fija (id = 1)
     Persona persona = personaRepository.findById(1L)
         .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
     softSkillEntity.setPersona(persona);
-    // 4. Guardar en base de datos
     SoftSkill savedEntity = softSkillRepository.save(softSkillEntity);
-    // 5. Convertir a DTO de salida
     SoftSkillDto dto = new SoftSkillDto();
     dto.setNombre(savedEntity.getNombre());
-    dto.setDescripcion(savedEntity.getDescripcion());
-    // si tenés id en el DTO
-    
+    dto.setDescripcion(savedEntity.getDescripcion());  
     dto.setId(savedEntity.getId());
     return dto;
 }

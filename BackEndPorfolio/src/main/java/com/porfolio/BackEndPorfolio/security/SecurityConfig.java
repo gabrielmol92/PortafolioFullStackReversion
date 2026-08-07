@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 /**
  *
  * @author GabrielPc
@@ -36,6 +37,13 @@ public class SecurityConfig {
                         "/softSkill/**",
                         "/hardSkill/**"
                 ).permitAll()
+                .antMatchers(HttpMethod.HEAD,
+                        "/",
+                        "/persona/**",
+                        "/educacion/**",
+                        "/softSkill/**",
+                        "/hardSkill/**"
+                ).permitAll()
                 .anyRequest().authenticated()
 
             .and()
@@ -54,7 +62,7 @@ public class SecurityConfig {
             "https://portafolio-full-stack-reversion.vercel.app"
         ));
 
-        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+        config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS","HEAD"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);
 
