@@ -10,7 +10,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+/**
+ *
+ * @author GabrielPc
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -25,6 +28,7 @@ public class SecurityConfig {
             .authorizeRequests()            
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
+                .antMatchers("/error").permitAll() 
                 .antMatchers(HttpMethod.GET,
                         "/",
                         "/persona/**",
