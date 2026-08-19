@@ -56,14 +56,12 @@ public class EducacionServiceImp implements IEducacionService {
 
     @Override
     public EducacionDto updateEd(EducacionDto educacionDto, Long id) {
-        Educacion educacion = educacionRepository.findById(id).orElse(null);
-        
+        Educacion educacion = educacionRepository.findById(id).orElse(null);      
          educacion.setInstitucion(educacionDto.getInstitucion());
          educacion.setPeriodo_inicio(educacionDto.getPeriodo_inicio());
          educacion.setPeriodo_final(educacionDto.getPeriodo_final());
          educacion.setTitulo(educacionDto.getTitulo());
-         educacion.setLink(educacionDto.getLink());
-         
+         educacion.setLink(educacionDto.getLink());     
          Educacion updateEducacion = this.educacionRepository.save(educacion);
          EducacionDto educacionDtoU = new EducacionDto();
          educacionDtoU = (EducacionDto)mapper.convertToDto(updateEducacion, educacionDtoU);

@@ -35,24 +35,18 @@ public class HardSkillServiceImp implements IHardSkillService {
     
  @Override
 public HardSkillDto create(HardSkillDto hardSkillDto) {
-    // 1. Crear entidad
     HardSkill hardSkillEntity = new HardSkill();
-    // 2. Mapear campos simples manualmente
     hardSkillEntity.setNombre(hardSkillDto.getNombre());
     hardSkillEntity.setNivel(hardSkillDto.getNivel());
     hardSkillEntity.setImg(hardSkillDto.getImg());
-    // 3. Asignar persona fija (id = 1)
     Persona persona = personaRepository.findById(1L)
         .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
     hardSkillEntity.setPersona(persona);
-    // 4. Guardar en base de datos
        HardSkill savedEntity = hardSkillRepository.save(hardSkillEntity);
-    // 5. Convertir a DTO de salida
     HardSkillDto dto = new HardSkillDto();
     dto.setNombre(savedEntity.getNombre());
     dto.setNivel(savedEntity.getNivel());
     dto.setImg(savedEntity.getImg());
-    // si tenés id en el DTO
     dto.setId(savedEntity.getId());
     return dto;
 }
@@ -63,13 +57,10 @@ public HardSkillDto create(HardSkillDto hardSkillDto) {
     
     @Override
     public HardSkillDto editSkill(HardSkillDto hardSkillDto, Long id) {
-          HardSkill hardSkill = hardSkillRepository.findById(id).orElse(null);
-         
+          HardSkill hardSkill = hardSkillRepository.findById(id).orElse(null);        
          hardSkill.setNombre(hardSkillDto.getNombre());
          hardSkill.setNivel(hardSkillDto.getNivel());
-         hardSkill.setImg(hardSkillDto.getImg());
-        
-         
+         hardSkill.setImg(hardSkillDto.getImg());           
          HardSkill updateHardSkill = this.hardSkillRepository.save(hardSkill);
          HardSkillDto hardSkillDtoU = new HardSkillDto();
          hardSkillDtoU = (HardSkillDto)mapper.convertToDto(updateHardSkill, hardSkillDtoU);
